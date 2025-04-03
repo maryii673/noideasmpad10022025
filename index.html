@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>No Ideas</title>
-    
+
     <!-- Link to CSS file -->
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
 </head>
@@ -21,19 +21,34 @@
             <li><a href="team.html">Team Info</a></li>
         </ul>
         
-       <!-- Map Image in the top-right corner of the nav bar -->
-       <div id="map-container">
-        <!-- Link to map.html when the map image is clicked -->
-        <a href="map.html">
-            <img src="map.png" alt="Map" id="map-image">
-        </a>
-    </div>
-</nav>
+        <!-- Map Image in the top-right corner of the nav bar -->
+        <div id="map-container">
+            <a href="map.html">
+                <img src="map.png" alt="Map" id="map-image">
+            </a>
+        </div>
+    </nav>
 
     <!-- Compass Section -->
     <section class="compass-container">
         <img id="compass" src="compass.png" alt="Compass" onclick="spinCompass()">
-        <h1 id="title" class="hidden"> No Ideas ?</h1>
+        <h1 id="title" class="hidden">No Ideas ?</h1>
+    </section>
+
+    <!-- Cover Page Section (hidden initially) -->
+    <section id="cover-page" class="cover-page hidden">
+        <img src="cover-page.png" alt="Cover Page Image" class="cover-image">
+        <h2>Cover Page of the Story</h2>
+    </section>
+
+    <!-- Start Journey Section with Downward Arrow (hidden initially) -->
+    <section class="start-journey hidden">
+        <div class="start-journey-text">
+            <h2>Start Journey</h2>
+        </div>
+        <a href="#cover-page" class="down-arrow">
+            <img src="down-arrow.png" alt="Downward Arrow">
+        </a>
     </section>
 
     <!-- Link to JavaScript file -->
@@ -41,6 +56,7 @@
 
 </body>
 </html>
+
 
 
 
