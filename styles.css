@@ -1,0 +1,49 @@
+/* General Page Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Shadows Into Light', cursive;
+}
+body {
+    background-color: #1a1a1a;
+    color: white;
+    text-align: center;
+    scroll-behavior: smooth;
+}
+nav {
+    background: #333;
+    padding: 15px 0;
+}
+.navbar-nav .nav-link {
+    color: white !important;
+    font-size: 18px;
+    margin: 0 15px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* COMPASS SECTION */
+.compass-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.compass-container {
+    position: relative;
+    margin-top: 20px;
+}
+.compass {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    transition: transform 2s ease-in-out;
+}
+.hidden-title {
+    font-size: 4rem;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    margin-top: 20px;
+}
