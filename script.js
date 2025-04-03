@@ -12,4 +12,20 @@ function spinCompass() {
     }, 4000); // Delay the title animation until the compass finishes spinning
 }
 
+// Example JavaScript function to toggle a menu when the map image is clicked
+function toggleNavMenu() {
+    // Toggle visibility of navigation menu when map is clicked
+function toggleNavMenu() {
+    const navMenu = document.getElementById("nav-menu");
+    navMenu.style.display = (navMenu.style.display === "block") ? "none" : "block";
+}
+
+// Smooth scrolling function for chapters
+function scrollToChapter(chapter) {
+    const section = document.getElementById(chapter);
+    section.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("nav-menu").style.display = "none"; // Hide menu after selection
+    }
+}
+
 

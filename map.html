@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Page - No Ideas</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Shadows Into Light', cursive;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            scroll-behavior: smooth;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 50px;
+        }
+
+        /* Go Home Button (House Image) Styling */
+        .go-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: inline-block;
+            padding: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .go-home img {
+            width: 60px; /* Adjust the size of the house image */
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        .go-home:hover img {
+            transform: scale(1.1); /* Slightly enlarge the image on hover */
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            position: fixed;
+            right: 0;
+            top: 100px;
+            width: 60px; /* Small width for sidebar */
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+            text-align: center;
+            box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            z-index: 10; /* Ensure the sidebar is above other content */
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #555;
+        }
+
+        /* Map Content Styling */
+        #map-content {
+            padding: 30px;
+            background-color: #252525;
+            border-radius: 10px;
+            margin: 50px auto;
+            width: 80%;
+            text-align: center;
+        }
+
+        #map-container {
+            margin-top: 30px;
+        }
+
+        #map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 30px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            display: none; /* Initially hidden */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+        }
+
+        .scroll-top:hover {
+            background-color: #555;
+            transform: scale(1.1);
+        }
+
+        .scroll-top:active {
+            background-color: #444;
+            transform: scale(0.95);
+        }
+
+        .scroll-top span {
+            display: block;
+            font-size: 1.2rem;
+        }
+
+        /* Hamburger Icon */
+        .hamburger-icon {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .hamburger-icon img {
+            width: 60px;
+            height: 60px;
+        }
+
+        /* Scroll Effect for Chapter Sections */
+        section {
+            margin: 30px 0;
+            padding: 50px;
+            background-color: #333;
+            border-radius: 10px;
+            opacity: 0;
+        }
+
+        section.visible {
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Revealing Image Animation */
+        @keyframes flipthebit {
+            from {
+                --bit: 0;
+            }
+            to {
+                --bit: 1;
+            }
+        }
+
+        .revealing-image {
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .revealing-image.visible {
+            opacity: 1;
+            clip-path: inset(0% 0% 0% 0%);
+            animation: flipthebit 1s linear both;
+        }
+
+        /* Toggle Button */
+        .sidebar-toggle {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .sidebar-toggle img {
+            width: 60px;
+            height: 60px;
+        }
+
+  /* Fullscreen & Auto Scroll Button Styling */
+.fullscreen-btn,
+.auto-btn {
+    position: fixed;
+    bottom: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 999;
+    margin-right: 20px;
+    transition: transform 1.5s ease-in-out; /* Smooth transition */
+}
+
+/* Positioning */
+.fullscreen-btn {
+    right: 15%;
+    transform: translateX(-50px);
+}
+
+.auto-btn {
+    right: 10%;
+    transform: translateX(50px);
+}
+
+/* Zoom effect when hovering */
+.fullscreen-btn:hover,
+.auto-btn:hover {
+    transform: scale(1.2); /* Slight zoom-in on hover */
+}
+       
+/* Scroll to Top Button Styling */
+.scroll-top {
+    position: fixed;
+    bottom: -5px;
+    left: -60px; /* Move to the far left */
+    width: 150px; /* Smaller size */
+    height: 150px; /* Smaller size */
+    cursor: pointer;
+    z-index: 1000;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+/* Scroll to Top Image */
+.scroll-top img {
+    width: 200px; /* Adjust arrow size */
+    height: 200px;
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Story Map</h1>
+        <p>Explore the locations related to the story "No Ideas". Each marker represents a significant area in the plot.</p>
+    </header>
+
+    <!-- Go Home Button (House Image) -->
+    <a href="index.html" class="go-home">
+        <img src="house-icon.png" alt="Go Home"> 
+    </a>
+
+     <!-- Hamburger Icon to Toggle Sidebar -->
+     <div class="hamburger-icon" onclick="toggleSidebar()">
+        <img src="hamburger-icon.png" alt="Hamburger Icon">
+    </div>
+
+    <!-- Sidebar with Chapter Links (on the far right) -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="#chapter1" onclick="scrollToChapter('chapter1')">Ch. 1</a></li>
+            <li><a href="#chapter2" onclick="scrollToChapter('chapter2')">Ch. 2</a></li>
+            <li><a href="#chapter3" onclick="scrollToChapter('chapter3')">Ch. 3</a></li>
+            <li><a href="#chapter4" onclick="scrollToChapter('chapter4')">Ch. 4</a></li>
+            <li><a href="#chapter5" onclick="scrollToChapter('chapter5')">Ch. 5 & Prologue</a></li>
+        </ul>
+    </div>
+
+    <!-- Map Section -->
+    <section id="map-content">
+        <h2>Map of the Story's Key Locations</h2>
+        
+        <!-- Embed Google Map Placeholder -->
+        <div id="map-container">
+            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1XaQZn1gM1jWyZ93aPQdGweH4yx9g-99b" 
+                    title="Story Map" allowfullscreen></iframe>
+        </div>
+
+        <p>Click on the markers on the map to explore key locations where events in the story unfold.</p>
+    </section>
+
+    <!-- Chapter Sections -->
+    <section id="chapter1" class="chapter-section">
+        <h2>Chapter 1: The Beginning</h2>
+        <div class="chapter-content">
+            <p>This chapter introduces the main characters and the first clues of the story...</p>
+            <img class="revealing-image" src="chapter1-image.jpg" alt="Chapter 1 Image">
+        </div>
+    </section>
+
+    <section id="chapter2" class="chapter-section">
+        <h2>Chapter 2: The Mystery Deepens</h2>
+        <div class="chapter-content">
+            <p>The mystery thickens as new revelations surface...</p>
+            <img class="revealing-image" src="chapter2-image.jpg" alt="Chapter 2 Image">
+        </div>
+    </section>
+
+    <section id="chapter3" class="chapter-section">
+        <h2>Chapter 3: The Turning Point</h2>
+        <div class="chapter-content">
+            <p>A crucial turning point happens in this chapter...</p>
+            <img class="revealing-image" src="chapter3-image.jpg" alt="Chapter 3 Image">
+        </div>
+    </section>
+
+    <section id="chapter4" class="chapter-section">
+        <h2>Chapter 4: The Revelation</h2>
+        <div class="chapter-content">
+            <p>In this chapter, the main character uncovers a shocking truth...</p>
+            <img class="revealing-image" src="chapter4-image.jpg" alt="Chapter 4 Image">
+        </div>
+    </section>
+
+    <section id="chapter5" class="chapter-section">
+        <h2>Chapter 5: The Conclusion + Prologue</h2>
+        <div class="chapter-content">
+            <p>The story reaches its climax and conclusion in this final chapter...</p>
+            <img class="revealing-image" src="chapter5-image.jpg" alt="Chapter 5 Image">
+        </div>
+    </section>
+
+    <footer>
+        <!-- Scroll-to-Top Button -->
+        <a href="#" class="scroll-top" id="scrollTopBtn">
+            <img src="up-arrow.png" alt="Up">
+        </a>
+
+    <!-- Auto and Fullscreen Buttons -->
+    <button class="auto-btn" onclick="autoScroll()">Auto Scroll</button>
+    <button class="fullscreen-btn" onclick="toggleFullscreen()">Fullscreen</button>
+
+    </footer>
+
+    <script>
+        // Reveal sections when they come into view
+        const sections = document.querySelectorAll('.chapter-section');
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+                    section.classList.add('visible');
+                    const image = section.querySelector('.revealing-image');
+                    image && image.classList.add('visible');
+                }
+            });
+
+            // Show or hide the Scroll-to-Top button based on the scroll position
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollTopBtn.style.display = 'block';
+            } else {
+                scrollTopBtn.style.display = 'none';
+            }
+        });
+
+        // Fullscreen Toggle Function
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+            console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+        });
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+        // Auto Scroll Function
+let scrolling;
+function autoScroll() {
+    if (scrolling) {
+        clearInterval(scrolling);
+        scrolling = null;
+    } else {
+        scrolling = setInterval(() => {
+            window.scrollBy(0, 2); // Adjust speed here
+        }, 50);
+    }
+}
+
+        // Scroll to top functionality
+        scrollTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+         // Scroll to specific chapter
+         function scrollToChapter(chapterId) {
+            const chapter = document.getElementById(chapterId);
+            chapter.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Toggle sidebar visibility
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            if (sidebar.style.width === '0px' || sidebar.style.width === '') {
+                sidebar.style.width = '200px'; // Set to desired width
+            } else {
+                sidebar.style.width = '0'; // Hide the sidebar
+            }
+        }
+
+        // Initial check to reveal images if they're in view already
+        window.dispatchEvent(new Event('scroll'));
+
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
