@@ -54,27 +54,30 @@ body {
     }
     
     #title.bounce {
-        animation: bigBounce 1s ease-out;
-        opacity: 1;
-        transform: translateY(0);
+        animation: bounceAndFloat 2s ease-out; /* Bounce then float up */
+    opacity: 1;
+    transform: translateY(0); /* Final position */
     }
     
     /* Bounce Animation */
-    @keyframes bigBounce {
+    @keyframes bounceAndFloat {
         0% {
-            transform: translateY(50px); /* Start below */
+            transform: translateY(50px); /* Start position */
         }
         30% {
-            transform: translateY(-60px); /* Go higher */
+            transform: translateY(-100px); /* Big bounce (BONG) */
+        }
+        40% {
+            transform: translateY(-50px); /* Drop down a little */
         }
         50% {
-            transform: translateY(10px); /* Bounce down a little */
+            transform: translateY(-30px); /* Float up a little */
         }
-        70% {
-            transform: translateY(-40px); /* Bounce up again */
+        60% {
+            transform: translateY(-10px); /* Float even more */
         }
-        85% {
-            transform: translateY(5px); /* Small bounce down */
+        80% {
+            transform: translateY(-5px); /* Almost settled */
         }
         100% {
             transform: translateY(0); /* Settle at the final position */
