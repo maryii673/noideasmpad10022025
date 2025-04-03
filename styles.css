@@ -1,49 +1,82 @@
-/* General Page Styling */
-* {
+/* General Styling */
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: 'Shadows Into Light', cursive;
-}
-body {
     background-color: #1a1a1a;
     color: white;
     text-align: center;
-    scroll-behavior: smooth;
 }
-nav {
+
+/* Navigation Bar */
+.navbar {
     background: #333;
-    padding: 15px 0;
+    padding: 15px;
 }
-.navbar-nav .nav-link {
-    color: white !important;
-    font-size: 18px;
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+.navbar ul li {
     margin: 0 15px;
-    text-decoration: underline;
+}
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
     cursor: pointer;
 }
 
-/* COMPASS SECTION */
-.compass-section {
-    height: 100vh;
+/* Compass Section */
+.compass-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    height: 100vh;
 }
-.compass-container {
-    position: relative;
-    margin-top: 20px;
-}
-.compass {
-    width: 200px;
-    height: 200px;
-    cursor: pointer;
-    transition: transform 2s ease-in-out;
-}
-.hidden-title {
-    font-size: 4rem;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    margin-top: 20px;
-}
+#compass {
+        width: 200px;
+        height: auto;
+        cursor: pointer;
+        transition: transform 4s ease-out; /* Slow down the rotation */
+    }
+    
+    #title {
+        font-size: 4rem;
+        margin-top: 30px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    }
+    
+    #title.bounce {
+        animation: bigBounce 1s ease-out;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Bounce Animation */
+    @keyframes bigBounce {
+        0% {
+            transform: translateY(50px); /* Start below */
+        }
+        30% {
+            transform: translateY(-60px); /* Go higher */
+        }
+        50% {
+            transform: translateY(10px); /* Bounce down a little */
+        }
+        70% {
+            transform: translateY(-40px); /* Bounce up again */
+        }
+        85% {
+            transform: translateY(5px); /* Small bounce down */
+        }
+        100% {
+            transform: translateY(0); /* Settle at the final position */
+        }
+    }
