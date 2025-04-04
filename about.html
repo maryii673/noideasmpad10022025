@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Our Journey</title>
+    <title>About Us </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
     <style>
@@ -67,6 +67,20 @@
             font-size: 1.2rem;
             color: #fffefd;
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+         /* Floating Effect for All Squares */
+         .floating-square {
+            animation: float 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(10px);
+            }
         }
 
         /* About Section Styling */
@@ -186,24 +200,23 @@
     </nav>
 
     <section class="hero">
-        <h1>Our Journey</h1>
+        <h1>About Us - Our Journey</h1>
         <p>A journey from *no ideas* to *something incredible*. Let's take a look back at the evolution of this project.</p>
     </section>
 
-    <section class="about-section">
+    <section class="about-section floating-square">
         <h2>The Blank</h2>
-        <p>It started with nothing. No clear ideas, no direction. Just a feeling that we wanted to create something. We stared at a blank screen, unsure of where to begin. But sometimes, that’s the best place to start.</p>
-        <img src="https://via.placeholder.com/800x400.png?text=The+Blank" alt="The Blank">
+        <p>It started with a blank slate, unsure of where to begin. No clear ideas, no direction. Just a feeling that we wanted to create something.</p>
     </section>
 
-    <section class="evolution-section">
+    <section class="evolution-section floating-square">
         <h3>The Progress</h3>
-        <p class="evolution-content">The journey wasn’t easy. Countless meetings, way too much coffee, and a lot of roadblocks. We got stuck, doubted ourselves, and had no idea if we’d even get there. But we kept at it. Even when it felt like we weren’t making progress. Slowly, piece by piece, everything started to fall into place.</p>
+        <p class="evolution-content">There were roadblocks, doubts, and endless cups of coffee. But we pushed through and began to see the pieces fall into place.</p>
     </section>
 
-    <section class="behind-scenes-section">
+    <section class="behind-scenes-section floating-square">
         <h3>The Journey</h3>
-        <p class="behind-scenes-content">What we’ve created is more than just the completed version. It's about the hard work, the moments of doubt, and the triumphs. Now, we’re excited for you to step into this adventure and see what we’ve built. <br><br><a href="#" class="interactive-btn">Try the Adventure</a></p>
+        <p class="behind-scenes-content">The journey is about everything we overcame. The doubts, the challenges, and the hard work. Now, it’s your turn to experience this adventure.<br><br><a href="index.html" class="interactive-btn">Click Here - To Begin Adventure!</a></p>
     </section>
 
     <footer>
