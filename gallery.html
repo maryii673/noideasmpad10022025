@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chapters Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Shadows Into Light', cursive;
+      background-color: black;
+      color: white;
+      overflow-x: hidden;
+      padding: 40px 0;
+      min-height: 100vh;
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+    }
+
+    .gallery-container {
+      position: relative;
+      padding: 0 5vw;
+    }
+
+    .gallery-scroll {
+      display: flex;
+      overflow-x: auto;
+      gap: 40px;
+      scroll-behavior: smooth;
+      padding-bottom: 20px;
+    }
+
+    .gallery-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .gallery-scroll::-webkit-scrollbar-thumb {
+      background: #444;
+      border-radius: 10px;
+    }
+
+    .chapter-card {
+      min-width: 200px;
+      height: 500px;
+      flex-shrink: 0;
+      background: #111;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chapter-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(255, 255, 255, 0.15);
+    }
+
+    .chapter-card img {
+      width: 100%;
+      height: 75%;
+      object-fit: cover;
+      filter: brightness(85%);
+      transition: filter 0.3s ease;
+    }
+
+    .chapter-card:hover img {
+      filter: brightness(100%);
+    }
+
+    .chapter-title {
+      padding: 15px 10px;
+      font-size: 1.4rem;
+      text-align: center;
+      letter-spacing: 1px;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .scroll-arrow {
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .scroll-arrow:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-50%) scale(1.05);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+    }
+
+    .scroll-arrow svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Go Home Button (House Image) Styling */
+    .go-home {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: inline-block;
+      padding: 10px;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .go-home img {
+      width: 60px;
+      height: 60px;
+      transition: transform 0.3s ease;
+    }
+
+    .go-home:hover img {
+      transform: scale(1.1);
+    }
+
+       /* Fullscreen Button Styling */
+    .fullscreen-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: inline-block;
+      padding: 10px;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    .fullscreen-btn img {
+      width: 60px;
+      height: 60px;
+      transition: transform 0.3s ease;
+    }
+
+    .fullscreen-btn:hover img {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Go Home Button -->
+  <a href="index.html" class="go-home">
+    <img src="house-icon.png" alt="Go Home">
+  </a>
+
+  <!-- Fullscreen Button with PNG Icon -->
+  <a class="fullscreen-btn" onclick="toggleFullScreen()">
+    <img src="fullscreen-icon.png" alt="Fullscreen">
+  </a>
+
+
+  <h1>Chapters Gallery</h1>
+
+  <div class="gallery-container">
+    <div class="gallery-scroll" id="scrollContainer">
+      <div class="chapter-card">
+        <img src="https://example.org/cover1.jpg" alt="Chapter 1">
+        <div class="chapter-title">Chapter 1: Beginnings</div>
+      </div>
+      <div class="chapter-card">
+        <img src="https://example.org/cover2.jpg" alt="Chapter 2">
+        <div class="chapter-title">Chapter 2: Rise</div>
+      </div>
+      <div class="chapter-card">
+        <img src="https://example.org/cover3.jpg" alt="Chapter 3">
+        <div class="chapter-title">Chapter 3: Reckoning</div>
+      </div>
+      <div class="chapter-card">
+        <img src="https://example.org/cover4.jpg" alt="Chapter 4">
+        <div class="chapter-title">Chapter 4: Fallout</div>
+      </div>
+      <div class="chapter-card">
+        <img src="https://example.org/cover5.jpg" alt="Chapter 5">
+        <div class="chapter-title">Chapter 5: Redemption</div>
+      </div>
+    </div>
+
+    <div class="scroll-arrow" onclick="scrollRight()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
+      </svg>
+    </div>
+  </div>
+
+
+  <script>
+    function scrollRight() {
+      const container = document.getElementById('scrollContainer');
+      container.scrollBy({ left: 400, behavior: 'smooth' });
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  </script>
+
+</body>
+</html>

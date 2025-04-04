@@ -29,30 +29,212 @@
         </div>
     </nav>
 
-    <!-- Compass Section -->
-    <section class="compass-container">
-        <img id="compass" src="compass.png" alt="Compass" onclick="spinCompass()">
-        <h1 id="title" class="hidden">No Ideas ?</h1>
-    </section>
-
-    <!-- Cover Page Section (hidden initially) -->
-    <section id="cover-page" class="cover-page hidden">
-        <img src="cover-page.png" alt="Cover Page Image" class="cover-image">
-        <h2>Cover Page of the Story</h2>
-    </section>
-
-    <!-- Start Journey Section with Downward Arrow (hidden initially) -->
-    <section class="start-journey hidden">
-        <div class="start-journey-text">
-            <h2>Start Journey</h2>
-        </div>
-        <a href="#cover-page" class="down-arrow">
-            <img src="down-arrow.png" alt="Downward Arrow">
-        </a>
-    </section>
-
     <!-- Link to JavaScript file -->
     <script src="script.js"></script>
+
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: 'Shadows Into Light', cursive;
+          background-color: black;
+          color: white;
+          overflow-x: hidden;
+        }
+    
+        /* Fade-in effect for cover page */
+        .cover {
+          height: 100vh;
+          width: 100%;
+          background: url('cover_page.png') center center/cover no-repeat;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          position: relative;
+          opacity: 0; /* Initially hidden */
+          animation: fadeZoomIn 9s ease forwards; /* Combine fade and zoom */
+        }
+    
+        @keyframes fadeZoomIn {
+          0% {
+            opacity: 0;
+            transform: scale(1);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1.03); /* Smooth zoom-in effect */
+          }
+        }
+    
+        /* Title and text styling */
+        .typewriter {
+          font-size: 5rem; /* Increased title size */
+          white-space: nowrap;
+          overflow: hidden;
+          opacity: 0;
+          animation: fadeInText 3s ease forwards;
+        }
+    
+        /* Fade-in effect for the typed text */
+        @keyframes fadeInText {
+          to {
+            opacity: 1;
+          }
+        }
+    
+        /* Styling for the start journey section */
+        .start-journey {
+          opacity: 0;
+          margin-top: 20px;
+          font-size: 1.8rem; /* Increased font size */
+          animation: fadeIn 2s ease 4s forwards;
+          text-align: center;
+        }
+    
+        .start-journey h2 {
+          font-size: 3rem;  /* Bigger title */
+          margin-bottom: -75px;
+        }
+    
+        .start-journey img {
+          width: 250px;  /* Make the arrow significantly bigger */
+          cursor: pointer;
+          animation: bounce 1.5s infinite;
+        }
+    
+        /* Animation for "Start Journey" appearing */
+        @keyframes fadeIn {
+          to { opacity: 1; }
+        }
+    
+        /* Bouncing animation for the arrow */
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+    
+        /* Chapter section styling */
+        #next {
+          height: 100vh;
+          background-color: #1e1e1e;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 2rem;
+          color: white;
+        }
+      </style>
+    
+    <style>
+       /* Define the sliding effect using CSS */
+       body {
+          margin: 0;
+          overflow-x: hidden;  /* Prevent horizontal scroll during the transition */
+          background-color: black;
+        }
+    
+        /* Full page slide-out */
+        .slide-out {
+          transform: translateX(-100vw);  /* Slide the body to the right */
+          transition: transform 2s ease; /* Duration of the sliding transition */
+        }
+    </style>
+    </head>
+    <body>
+    
+      <!-- Cover Section -->
+      <section class="cover">
+        <div class="typewriter" id="typewriter">
+          <span id="typedText"> </span>
+        </div>
+    
+        <div class="start-journey">
+          <h2>Start Journey</h2>
+          <a href="gallery.html" id="arrow-link">
+            <img src="down-arrow.png" alt="Down Arrow">
+          </a>
+        </div>
+      </section>
+    
+      <script>
+        // When the user clicks on the arrow link
+        document.getElementById('arrow-link').addEventListener('click', function(event) {
+          event.preventDefault();  // Prevent default anchor behavior
+    
+          // Apply the slide-out effect to the body
+          document.body.classList.add('slide-out');
+    
+          // Wait for the slide-out effect to finish (2 seconds)
+          setTimeout(function() {
+            window.location.href = 'gallery.html';  // Navigate to the gallery page
+          }, 2000);  // Delay should match the duration of the slide-out transition (2s)
+        });
+      </script>
+    
+       <!-- Cover Page 2 -->
+    
+      <script>
+        // Typing and deleting effect for "???" and "No Ideas"
+        const text = ["???", "No Ideas",];
+        let index = 0;
+        let textIndex = 0;
+        let currentText = '';
+        let isDeleting = false;
+        let isTyping = false;
+        const speed = 200; // Slower typing speed (ms)
+        const deleteSpeed = 80; // Speed of deleting (ms)
+        const slowerSpeed = 300; // Slower speed for "No Ideas"
+    
+        const typedTextElement = document.getElementById('typedText');
+    
+        function type() {
+          if (isDeleting) {
+            currentText = currentText.slice(0, -1);
+            typedTextElement.textContent = currentText;
+            if (currentText.length === 0) {
+              isDeleting = false;
+              index++;
+              if (index < text.length) {
+                setTimeout(type, 500);
+              } else {
+                // After all text has been typed and deleted, fade in "No Ideas"
+                setTimeout(() => {
+                  document.querySelector('.start-journey').style.opacity = 1;
+                }, 500); // Wait a bit before showing the "Start Journey"
+              }
+            } else {
+              setTimeout(type, deleteSpeed);
+            }
+          } else {
+            currentText = text[index].slice(0, textIndex);
+            typedTextElement.textContent = currentText;
+            if (currentText.length === text[index].length) {
+              if (index === 0) {
+                isDeleting = true;
+                setTimeout(type, 500);
+              } else {
+                setTimeout(type, 1500); // Wait a bit before starting to delete
+              }
+            } else {
+              textIndex++;
+              setTimeout(type, speed);
+            }
+          }
+        }
+    
+        // Start typing animation after page loads
+        window.onload = () => {
+          setTimeout(() => {
+            type();
+          }, 1000); // Wait a bit before starting the typing animation
+        };
+    
+    
+        // Gallery Page - Slide 
+        
+      </script>
 
 </body>
 </html>
