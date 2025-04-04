@@ -24,12 +24,24 @@
       position: relative;
     }
 
-    h1 {
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 40px;
-      letter-spacing: 2px;
-    }
+header {
+  text-align: center;
+  margin-top: 40px; /* Optional: adds space above */
+  margin-bottom: 30px; /* Optional: adds space below */
+}
+
+header h1 {
+  font-size: 2.5em; /* Optional: adjust size */
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 1.2em;
+  color: white; 
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 
     .gallery-container {
       position: relative;
@@ -184,8 +196,11 @@
     <img src="fullscreen-icon.png" alt="Fullscreen">
   </a>
 
-
-  <h1>Chapters Gallery</h1>
+<header>
+    <h1>EVERY PLACE TELLS A STORY</h1>
+    <p>CHOOSE YOUR ADVENTURE</p>
+</header>
+ 
 
   <div class="gallery-container">
     <div class="gallery-scroll" id="scrollContainer">

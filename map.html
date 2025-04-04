@@ -22,10 +22,23 @@
             scroll-behavior: smooth;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-top: 50px;
+        header {
+            text-align: center;
+            margin-top: 40px; /* Optional: adds space above */
+            margin-bottom: 30px; /* Optional: adds space below */
         }
+
+        header h1 {
+            font-size: 2.5em; /* Optional: adjust size */
+            margin-bottom: 10px;
+        }
+
+    header p {
+        font-size: 1.2em;
+        color: white; 
+        max-width: 600px;
+        margin: 0 auto;
+    }
 
         /* Go Home Button (House Image) Styling */
         .go-home {
@@ -103,35 +116,44 @@
             border-radius: 8px;
         }
 
-        .scroll-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 15px 30px;
-            background-color: #333;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            display: none; /* Initially hidden */
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            text-align: center;
-        }
+   /* Scroll to Top Button Styling */
+.scroll-top {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #333;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
-        .scroll-top:hover {
-            background-color: #555;
-            transform: scale(1.1);
-        }
+.scroll-top:hover {
+    background-color: #555;
+    transform: scale(1.1);
+}
 
-        .scroll-top:active {
-            background-color: #444;
-            transform: scale(0.95);
-        }
+.scroll-top:active {
+    background-color: #444;
+    transform: scale(0.95);
+}
 
-        .scroll-top span {
-            display: block;
-            font-size: 1.2rem;
-        }
+/* Image inside button */
+.scroll-top img {
+    width: 170px;
+    height: 170px;
+    object-fit: contain;
+    transform: translate(-41px, -40px); /* Left and Up */
+}
+
+
+
 
         /* Hamburger Icon */
         .hamburger-icon {
@@ -196,31 +218,46 @@
             height: 60px;
         }
 
-  /* Fullscreen & Auto Scroll Button Styling */
+  /* Fullscreen & Auto Scroll Buttons - Circle Style */
 .fullscreen-btn,
 .auto-btn {
     position: fixed;
     bottom: 20px;
-    padding: 10px 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
     background-color: #333;
     color: white;
     border: none;
-    border-radius: 20px;
     cursor: pointer;
     z-index: 999;
-    margin-right: 20px;
-    transition: transform 1.5s ease-in-out; /* Smooth transition */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
-/* Positioning */
+/* Individual Positioning */
 .fullscreen-btn {
-    right: 15%;
-    transform: translateX(-50px);
+    right: 140px;
 }
 
 .auto-btn {
-    right: 10%;
-    transform: translateX(50px);
+    right: 50px;
+}
+
+/* Hover Effects */
+.fullscreen-btn:hover,
+.auto-btn:hover {
+    background-color: #555;
+    transform: scale(1.1);
+}
+
+.fullscreen-btn:active,
+.auto-btn:active {
+    background-color: #444;
+    transform: scale(0.95);
 }
 
 /* Zoom effect when hovering */
@@ -228,34 +265,14 @@
 .auto-btn:hover {
     transform: scale(1.2); /* Slight zoom-in on hover */
 }
-       
-/* Scroll to Top Button Styling */
-.scroll-top {
-    position: fixed;
-    bottom: -5px;
-    left: -60px; /* Move to the far left */
-    width: 150px; /* Smaller size */
-    height: 150px; /* Smaller size */
-    cursor: pointer;
-    z-index: 1000;
-    background: none;
-    border: none;
-    outline: none;
-}
-
-/* Scroll to Top Image */
-.scroll-top img {
-    width: 200px; /* Adjust arrow size */
-    height: 200px;
-}
 
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Story Map</h1>
-        <p>Explore the locations related to the story "No Ideas". Each marker represents a significant area in the plot.</p>
+        <h1>WELCOME TO NORMAN'S ADVENTURE</h1>
+        <p>UNCOVER THE STORIES BEHIND THE MAP</p>
     </header>
 
     <!-- Go Home Button (House Image) -->
@@ -267,6 +284,7 @@
      <div class="hamburger-icon" onclick="toggleSidebar()">
         <img src="hamburger-icon.png" alt="Hamburger Icon">
     </div>
+
 
     <!-- Sidebar with Chapter Links (on the far right) -->
     <div class="sidebar">
@@ -339,9 +357,15 @@
             <img src="up-arrow.png" alt="Up">
         </a>
 
-    <!-- Auto and Fullscreen Buttons -->
-    <button class="auto-btn" onclick="autoScroll()">Auto Scroll</button>
-    <button class="fullscreen-btn" onclick="toggleFullscreen()">Fullscreen</button>
+   <!-- Auto and Fullscreen Buttons -->
+<button class="auto-btn" onclick="autoScroll()">
+    <img src="auto-icon.png" alt="Auto Scroll" style="width: 70px; height: 70px;">
+</button>
+
+<button class="fullscreen-btn" onclick="toggleFullscreen()">
+    <img src="fullscreen-icon.png" alt="Fullscreen" style="width: 50px; height: 50px;">
+</button>
+
 
     </footer>
 
