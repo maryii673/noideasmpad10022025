@@ -146,10 +146,10 @@
     
         <!-- Navigation Bar -->
         <nav class="navbar">
-            <!-- Fullscreen icon on the left -->
-            <div class="fullscreen-icon">
-                <img src="fullscreen-icon.png" alt="Fullscreen Icon">
-            </div>
+              <!-- Fullscreen icon on the left -->
+        <div class="fullscreen-icon" id="fullscreen-icon">
+            <img src="fullscreen-icon.png" alt="Fullscreen Icon">
+        </div>
     
             <!-- Navigation Links -->
             <ul>
@@ -245,11 +245,24 @@
                     type();
                 }, 1000); // Wait a bit before starting the typing animation
             };
-        </script>
-    
-    </body>
-    </html>
-    
+
+          // Fullscreen Toggle Function
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Add event listener to fullscreen icon
+        document.getElementById('fullscreen-icon').addEventListener('click', toggleFullscreen);
+    </script>
+
+</body>
+</html>
 
 
 
