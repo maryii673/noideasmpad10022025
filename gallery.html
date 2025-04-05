@@ -49,12 +49,13 @@
     }
 
     .gallery-scroll {
-      display: flex;
-      overflow-x: auto;
-      gap: 40px;
-      scroll-behavior: smooth;
-      padding-bottom: 20px;
+    display: flex;
+    width: 100%;  /* Ensure full width */
+    overflow-x: auto;
+    gap: 40px;
+    scroll-behavior: smooth;
     }
+
 
     .gallery-scroll::-webkit-scrollbar {
       height: 8px;
@@ -161,7 +162,7 @@
       transform: scale(1.1);
     }
 
-       /* Fullscreen Button Styling */
+    /* Fullscreen Button Styling */
     .fullscreen-btn {
       position: fixed;
       top: 20px;
@@ -233,14 +234,19 @@
   
   <script>
     function scrollRight() {
-      const container = document.getElementById('scrollContainer');
-      container.scrollBy({ left: 400, behavior: 'smooth' });
+    const container = document.getElementById('scrollContainer');
+    container.scrollLeft += 600;  // Scroll right by 600px
     }
 
     function scrollLeft() {
-      const container = document.getElementById('scrollContainer');
-      container.scrollBy({ left: -400, behavior: 'smooth' });
+    const container = document.getElementById('scrollContainer');
+    // Only scroll left if we're not already at the leftmost position
+    if (container.scrollLeft > 0) {
+        container.scrollBy({ left: -600, behavior: 'smooth' });  // Scroll left by 600px
     }
+    }
+
+
 
     function toggleFullScreen() {
       if (!document.fullscreenElement) {
