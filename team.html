@@ -1,121 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Info - No Ideas</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Shadows Into Light', cursive;
-        }
-        body {
-            background-color: #1a1a1a;
-            color: white;
-            text-align: center;
-            scroll-behavior: smooth;
-        }
-        nav {
-            background: #333;
-            padding: 15px 0;
-        }
-        .navbar-nav .nav-link {
-            color: white !important;
-            font-size: 18px;
-            margin: 0 15px;
-            text-decoration: underline;
-        }
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 20px;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        .hero p {
-            max-width: 600px;
-            font-size: 1.2rem;
-            line-height: 1.5;
-        }
-        .team-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-        .team-member {
-            background: #333;
-            padding: 20px;
-            margin: 15px;
-            border-radius: 10px;
-            max-width: 250px;
-            text-align: center;
-        }
-        .team-member img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-        }
-        .team-member h3 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-        .team-member p {
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Team Info - No Ideas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Shadows+Into+Light&display=swap" rel="stylesheet"/>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Shadows Into Light', cursive;
+      background: linear-gradient(135deg, #1a1a1a, #454549);
+      color: #fff;
+      text-align: center;
+    }
+
+    nav {
+      background: #111;
+      padding: 15px 0;
+    }
+
+    .navbar-nav .nav-link {
+      color: #fff !important;
+      font-size: 18px;
+      margin: 0 15px;
+      transition: color 0.3s ease;
+      font-family: 'Shadows Into Light', cursive;
+      text-decoration: none !important;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #f0c674 !important;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 60px 20px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+      font-family: 'Shadows Into Light', cursive;
+    }
+
+    .hero p {
+      max-width: 700px;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .team-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 50px;
+      gap: 30px;
+    }
+
+    .team-member {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px 20px;
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .team-member img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      margin-bottom: 15px;
+    }
+
+    .team-member h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .team-member p {
+      font-size: 1rem;
+      opacity: 0.85;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .team-member {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
-    <section class="hero">
-        <h1>Meet Our Team</h1>
-        <p>The creative minds behind <em>No Ideas</em>. A team of storytellers, artists, and developers bringing immersive narratives to life.</p>
-        
-        <div class="team-container">
-            <div class="team-member">
-                <img src="team1.jpg" alt="Team Member 1">
-                <h3>Kiana Emile</h3>
-                <p>Web Developer </p>
-            </div>
-            <div class="team-member">
-                <img src="team2.jpg" alt="Team Member 2">
-                <h3>Beracah Okere</h3>
-                <p>Illustrator</p>
-            </div>
-            <div class="team-member">
-                <img src="team3.jpg" alt="Team Member 3">
-                <h3>Teagan Gravelle</h3>
-                <p>Writer</p>
-            </div>
-        </div>
-    </section>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <section class="hero">
+    <h1>Meet Our Team</h1>
+    <p>The creators behind <em>No Ideas</em>. A team of storytellers, artists, and developers bring you an immersive experience in the world of digital storytelling. <br> MEET THE MEMBERS.</p>
+    
+    <div class="team-container">
+      <div class="team-member">
+        <img src="team1.jpg" alt="Kiana Emile">
+        <h3>Kiana Emile</h3>
+        <p>Web Developer</p>
+      </div>
+      <div class="team-member">
+        <img src="team2.jpg" alt="Beracah Okere">
+        <h3>Beracah Okere</h3>
+        <p>Illustrator</p>
+      </div>
+      <div class="team-member">
+        <img src="team3.jpg" alt="Teagan Gravelle">
+        <h3>Teagan Gravelle</h3>
+        <p>Writer</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
