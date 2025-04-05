@@ -108,37 +108,36 @@
       justify-content: center;
     }
 
-    .scroll-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.08);
-      border: 1px solid white;
-      color: white;
-      padding: 10px 15px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      border-radius: 50%;
-      transition: background 0.3s ease;
-      z-index: 10;
-    }
-
-    .scroll-arrow:hover {
-      background: rgba(255,255,255,0.2);
-    }
-
-    .scroll-arrow.right {
-      right: 30px;
-    }
-
-    .scroll-arrow.left {
-      left: 30px;
-    }
-
     @keyframes fadeIn {
       to {
         opacity: 1;
       }
+    }
+
+    /* Movie-style transition styles */
+    .chapter-card.zooming {
+      transform: scale(1.3);
+      z-index: 999;
+    }
+
+    .chapter-card.fade-out {
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .transition-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: black;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+    }
+
+    .transition-overlay.show {
+      opacity: 1;
     }
 
     /* Go Home Button (House Image) Styling */
@@ -204,50 +203,36 @@
  
 
 <div class="gallery-container">
-    <div class="scroll-arrow left" onclick="scrollLeft()">←</div>
   
     <div class="gallery-scroll" id="scrollContainer">
-      <div class="chapter-card">
-        <img src="The House.png" alt="Chapter 1">
-        <div class="chapter-title">CHAPTER 1: The House</div>
-      </div>
-      <div class="chapter-card">
-        <img src="The Map.png" alt="Chapter 2">
-        <div class="chapter-title">CHAPTER 2: The Map</div>
-      </div>
-      <div class="chapter-card">
-        <img src="The Cabin.png" alt="Chapter 3">
-        <div class="chapter-title">CHAPTER 3: The Cabin</div>
-      </div>
-      <div class="chapter-card">
-        <img src="The Tower.png" alt="Chapter 4">
-        <div class="chapter-title">CHAPTER 4: The Tower</div>
-      </div>
-      <div class="chapter-card">
-        <img src="The Oak Tree.png" alt="Chapter 5">
-        <div class="chapter-title">CHAPTER 5: The Oak Tree</div>
+        <div class="chapter-card" onclick="goToChapter(1, this)">
+          <img src="The House.png" alt="Chapter 1">
+          <div class="chapter-title">CHAPTER 1: The House</div>
+        </div>
+        <div class="chapter-card" onclick="goToChapter(2, this)">
+          <img src="The Map.png" alt="Chapter 2">
+          <div class="chapter-title">CHAPTER 2: The Map</div>
+        </div>
+        <div class="chapter-card" onclick="goToChapter(3, this)">
+          <img src="The Cabin.png" alt="Chapter 3">
+          <div class="chapter-title">CHAPTER 3: The Cabin</div>
+        </div>
+        <div class="chapter-card" onclick="goToChapter(4, this)">
+          <img src="The Tower.png" alt="Chapter 4">
+          <div class="chapter-title">CHAPTER 4: The Tower</div>
+        </div>
+        <div class="chapter-card" onclick="goToChapter(5, this)">
+          <img src="The Oak Tree.png" alt="Chapter 5">
+          <div class="chapter-title">CHAPTER 5: The Oak Tree</div>
+        </div>
       </div>
     </div>
-  
-    <div class="scroll-arrow right" onclick="scrollRight()">→</div>
   </div>
+
+    <!-- Black overlay for transition -->
+    <div class="transition-overlay" id="overlay"></div>
   
   <script>
-    function scrollRight() {
-    const container = document.getElementById('scrollContainer');
-    container.scrollLeft += 600;  // Scroll right by 600px
-    }
-
-    function scrollLeft() {
-    const container = document.getElementById('scrollContainer');
-    // Only scroll left if we're not already at the leftmost position
-    if (container.scrollLeft > 0) {
-        container.scrollBy({ left: -600, behavior: 'smooth' });  // Scroll left by 600px
-    }
-    }
-
-
-
     function toggleFullScreen() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(err => {
@@ -256,6 +241,25 @@
       } else {
         document.exitFullscreen();
       }
+    }
+
+    function goToChapter(chapterNumber, clickedCard) {
+      const cards = document.querySelectorAll('.chapter-card');
+      const overlay = document.getElementById('overlay');
+
+      cards.forEach(card => {
+        if (card !== clickedCard) {
+          card.classList.add('fade-out');
+        } else {
+          card.classList.add('zooming');
+        }
+      });
+
+      overlay.classList.add('show');
+
+      setTimeout(() => {
+        window.location.href = `map.html?chapter=chapter${chapterNumber}`;
+      }, 800); // adjust for effect duration
     }
   </script>
 

@@ -442,7 +442,23 @@ function autoScroll() {
         // Initial check to reveal images if they're in view already
         window.dispatchEvent(new Event('scroll'));
 
-    </script>
+
+        window.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const chapterId = params.get('chapter'); // e.g., 'chapter3'
+
+        if (chapterId) {
+        const targetSection = document.getElementById(chapterId);
+        if (targetSection) {
+            // Optional: Add a short delay to allow page to render first
+            setTimeout(() => {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+        }
+        }
+    });
+</script>
+
 
 </body>
 </html>
