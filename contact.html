@@ -38,6 +38,16 @@
             padding: 20px;
             background: linear-gradient(45deg, #333, #555);
         }
+        .animated-title span {
+        transition: opacity 0.5s ease-in-out;
+        }
+        .fade-out {
+            opacity: 0;
+        }
+        .fade-in {
+            opacity: 1;
+        }
+
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 20px;
@@ -111,7 +121,9 @@
     </nav>
     
     <section class="hero">
-        <h1>Questions or Feedback</h1>
+        <h1 class="animated-title">
+            <span id="question-part">Questions</span> or <span id="feedback-part">Feedback</span>
+        </h1>
         <p> We'd love to hear from you! <br>Reach out to us using the form below. </p>
         
         <div class="contact-form">
@@ -121,6 +133,41 @@
             <button type="submit">Send Message</button>
         </div>
     </section>
+
+    <script>
+    const questionSpan = document.getElementById('question-part');
+    const feedbackSpan = document.getElementById('feedback-part');
+
+    const questionStates = ["Questions", "?"];
+    const feedbackStates = ["Feedback", "👍👎"];
+    
+    let index = 0;
+
+    function animateTitle() {
+        questionSpan.classList.add('fade-out');
+        feedbackSpan.classList.add('fade-out');
+
+        setTimeout(() => {
+            index = (index + 1) % questionStates.length;
+            questionSpan.textContent = questionStates[index];
+            feedbackSpan.textContent = feedbackStates[index];
+
+            questionSpan.classList.remove('fade-out');
+            feedbackSpan.classList.remove('fade-out');
+            questionSpan.classList.add('fade-in');
+            feedbackSpan.classList.add('fade-in');
+
+            setTimeout(() => {
+                questionSpan.classList.remove('fade-in');
+                feedbackSpan.classList.remove('fade-in');
+            }, 500);
+        }, 500);
+    }
+
+    setInterval(animateTitle, 3000); // changes every 3 seconds
+</script>
+
+    </script>
 
     <footer>
         <p>&copy; 2025 No Ideas. All Rights Reserved.</p>

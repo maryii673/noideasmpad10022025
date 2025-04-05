@@ -15,7 +15,7 @@
         }
 
         body {
-            background-color: #181818;
+            background-color:#181818 ;
             color: #fff;
             font-size: 16px;
             text-align: center;
@@ -52,6 +52,33 @@
             z-index: 1;
             color: white;
         }
+
+        .golden-arch {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .arch-svg {
+            width: 200px;
+            height: 100px;
+        }
+
+        .draw-arch {
+            stroke: #FFD700;
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 160; /* total length of path (can be adjusted) */
+            stroke-dashoffset: 160;
+            animation: drawArch 2.5s ease-out forwards;
+        }
+
+        @keyframes drawArch {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
 
         .hero h1 {
             font-size: 3.5rem;
@@ -200,6 +227,11 @@
     </nav>
 
     <section class="hero">
+        <div class="golden-arch">
+            <svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg" class="arch-svg">
+                <path d="M0,50 Q50,0 100,50" class="draw-arch"/>
+            </svg>
+        </div>
         <h1>Our Journey</h1>
         <p>A journey from *no ideas* to *something incredible*. Let's take a look back at the evolution of this project.</p>
     </section>
