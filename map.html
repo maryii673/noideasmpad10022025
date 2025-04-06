@@ -39,6 +39,48 @@
         max-width: 600px;
         margin: 0 auto;
     }
+        .scroll-indicator {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 30px;
+        }
+
+        .arrow {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        transform: rotate(45deg);
+        border-right: 4px solid rgb(255, 255, 255);
+        border-bottom: 4px solid rgb(255, 255, 255);
+        opacity: 0;
+        animation: scrollAnim 1.5s infinite;
+        }
+
+        .arrow:nth-child(2) {
+        animation-delay: 0.2s;
+        }
+
+        .arrow:nth-child(3) {
+        animation-delay: 0.4s;
+        }
+
+        @keyframes scrollAnim {
+        0% {
+            opacity: 0;
+            transform: translateY(0) rotate(45deg);
+        }
+        50% {
+            opacity: 1;
+            transform: translateY(10px) rotate(45deg);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(20px) rotate(45deg);
+        }
+        }
+
 
         /* Go Home Button (House Image) Styling */
         .go-home {
@@ -270,7 +312,12 @@
 
     <header>
         <h1>WELCOME TO NORMAN'S ADVENTURE</h1>
-        <p>UNCOVER HIS JOURNEY THROUGH THESE STORIES</p>
+        <p>SCROLL TO UNCOVER HIS JOURNEY THROUGH THESE STORIES</p>
+        <div class="scroll-indicator">
+            <span class="arrow"></span>
+            <span class="arrow"></span>
+            <span class="arrow"></span>
+        </div>
     </header>
 
     <!-- Go Home Button (House Image) -->
@@ -368,6 +415,9 @@
     </footer>
 
     <script>
+
+        
+
         // Reveal sections when they come into view
         const sections = document.querySelectorAll('.chapter-section');
         const scrollTopBtn = document.getElementById('scrollTopBtn');
