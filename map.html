@@ -29,12 +29,12 @@
         }
 
         header h1 {
-            font-size: 2.5em; /* Optional: adjust size */
+            font-size: 3em; /* Optional: adjust size */
             margin-bottom: 10px;
         }
 
     header p {
-        font-size: 1.2em;
+        font-size: 1.4em;
         color: white; 
         max-width: 600px;
         margin: 0 auto;
@@ -209,19 +209,40 @@
             height: 60px;
         }
 
-        /* Scroll Effect for Chapter Sections */
-        section {
-            margin: 30px 0;
-            padding: 50px;
-            background-color: #333;
-            border-radius: 10px;
-            opacity: 0;
-        }
+            /* Scroll Effect for Chapter Sections */
+            section.chapter-section {
+                margin: 100px auto;
+                padding: 80px 40px;
+                background-color: #333;
+                border-radius: 20px;
+                width: 85%;
+                max-width: 1200px;
+                opacity: 0;
+                position: relative;
+            }
 
-        section.visible {
+            /* CHAPTER TITLES OUTSIDE THE BOX */
+            .chapter-title {
+                font-size: 2.5em;
+                font-weight: 800; /* Bolder */
+                margin-bottom: -30px;
+                margin-top: 100px;
+                color: white;
+                text-align: center;
+                text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            }
+
+
+            section.visible {
+                opacity: 1;
+                transform: translateY(40px);
+                transition: all 2s ease;
+            }
+
+            .chapter-title.visible {
             opacity: 1;
-            transition: opacity 1s ease-in-out;
-        }
+            transform: translateY(0);
+            }
 
         /* Revealing Image Animation */
         @keyframes flipthebit {
@@ -312,7 +333,7 @@
 
     <header>
         <h1>WELCOME TO NORMAN'S ADVENTURE</h1>
-        <p>SCROLL TO UNCOVER HIS JOURNEY THROUGH THESE STORIES</p>
+        <p>SCROLL TO UNCOVER HIS JOURNEY</p>
         <div class="scroll-indicator">
             <span class="arrow"></span>
             <span class="arrow"></span>
@@ -334,65 +355,55 @@
     <!-- Sidebar with Chapter Links (on the far right) -->
     <div class="sidebar">
         <ul>
-            <li><a href="#chapter1" onclick="scrollToChapter('chapter1')">Ch. 1</a></li>
-            <li><a href="#chapter2" onclick="scrollToChapter('chapter2')">Ch. 2</a></li>
-            <li><a href="#chapter3" onclick="scrollToChapter('chapter3')">Ch. 3</a></li>
-            <li><a href="#chapter4" onclick="scrollToChapter('chapter4')">Ch. 4</a></li>
-            <li><a href="#chapter5" onclick="scrollToChapter('chapter5')">Ch. 5 + Epilogue</a></li>
+            <li><a href="#chapter1">Ch. 1</a><li>
+            <li><a href="#chapter2">Ch. 2</a><li>
+            <li><a href="#chapter3">Ch. 3</a><li>
+            <li><a href="#chapter4">Ch. 4</a><li>
+            <li><a href="#chapter5">Ch. 5 + E</a><li>
         </ul>
     </div>
 
-    <!-- Map Section -->
-    <section id="map-content">
-        <h2>Map of the Story's Key Locations</h2>
-        
-        <!-- Embed Google Map Placeholder -->
-        <div id="map-container">
-            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1XaQZn1gM1jWyZ93aPQdGweH4yx9g-99b" 
-                    title="Story Map" allowfullscreen></iframe>
-        </div>
-
-        <p>Click on the markers on the map to explore key locations where events in the story unfold.</p>
-    </section>
 
     <!-- Chapter Sections -->
-    <section id="chapter1" class="chapter-section">
-        <h2>CHAPTER 1: The House</h2>
-        <div class="chapter-content">
-            <p>This chapter introduces the main characters and the first clues of the story...</p>
-            <img class="revealing-image" src="chapter1-image.jpg" alt="Chapter 1 Image">
+    <div id="chapter1" class="chapter-wrapper">
+        <h2 class="chapter-title">CHAPTER 1: The House</h2>
+        <section class="chapter-section">
+            <div class="chapter-content">
+                <p>This chapter introduces the main characters...</p>
+            </div>
+        </section>
+    </div>
+
+
+    <div id="chapter2" class="chapter-wrapper">
+        <h2 class="chapter-title">CHAPTER 2: The Map</h2>
+        <section class="chapter-section">
+            <div class="chapter-content">
+            <p>This chapter introduces the main characters...</p>
         </div>
     </section>
 
-    <section id="chapter2" class="chapter-section">
-        <h2>CHAPTER 2: The Map</h2>
-        <div class="chapter-content">
-            <p>The mystery thickens as new revelations surface...</p>
-            <img class="revealing-image" src="chapter2-image.jpg" alt="Chapter 2 Image">
+    <div id="chapter3" class="chapter-wrapper">
+        <h2 class="chapter-title">CHAPTER 3: The Cabin</h2>
+        <section class="chapter-section">
+            <div class="chapter-content">
+            <p>This chapter introduces the main characters...</p>
         </div>
     </section>
 
-    <section id="chapter3" class="chapter-section">
-        <h2>CHAPTER 3: The Cabin</h2>
-        <div class="chapter-content">
-            <p>A crucial turning point happens in this chapter...</p>
-            <img class="revealing-image" src="chapter3-image.jpg" alt="Chapter 3 Image">
+    <div id="chapter4" class="chapter-wrapper">
+        <h2 class="chapter-title">CHAPTER 4: The Tower</h2>
+        <section class="chapter-section">
+            <div class="chapter-content">
+            <p>This chapter introduces the main characters...</p>
         </div>
     </section>
 
-    <section id="chapter4" class="chapter-section">
-        <h2>CHAPTER 4: The Tower</h2>
-        <div class="chapter-content">
-            <p>In this chapter, the main character uncovers a shocking truth...</p>
-            <img class="revealing-image" src="chapter4-image.jpg" alt="Chapter 4 Image">
-        </div>
-    </section>
-
-    <section id="chapter5" class="chapter-section">
-        <h2>CHAPTER 5 + EPILOGUE: The Oak Tree </h2>
-        <div class="chapter-content">
-            <p>The story reaches its climax and conclusion in this final chapter...</p>
-            <img class="revealing-image" src="chapter5-image.jpg" alt="Chapter 5 Image">
+    <div id="chapter5" class="chapter-wrapper">
+        <h2 class="chapter-title">CHAPTER 5 + EPILOGUE: The Oak Tree</h2>
+        <section class="chapter-section">
+            <div class="chapter-content">
+            <p>This chapter introduces the main characters...</p>
         </div>
     </section>
 
@@ -441,28 +452,28 @@
         });
 
         // Fullscreen Toggle Function
-function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(err => {
-            console.log(`Error attempting to enable full-screen mode: ${err.message}`);
-        });
-    } else {
-        document.exitFullscreen();
-    }
-}
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
 
         // Auto Scroll Function
-let scrolling;
-function autoScroll() {
-    if (scrolling) {
-        clearInterval(scrolling);
-        scrolling = null;
-    } else {
-        scrolling = setInterval(() => {
-            window.scrollBy(0, 2); // Adjust speed here
-        }, 50);
-    }
-}
+        let scrolling;
+        function autoScroll() {
+            if (scrolling) {
+                clearInterval(scrolling);
+                scrolling = null;
+            } else {
+                scrolling = setInterval(() => {
+                    window.scrollBy(0, 2); // Adjust speed here
+                }, 50);
+            }
+        }
 
         // Scroll to top functionality
         scrollTopBtn.addEventListener('click', (e) => {
@@ -475,9 +486,12 @@ function autoScroll() {
 
          // Scroll to specific chapter
          function scrollToChapter(chapterId) {
-            const chapter = document.getElementById(chapterId);
-            chapter.scrollIntoView({ behavior: 'smooth' });
+        const element = document.getElementById(chapterId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+    }
+
 
         // Toggle sidebar visibility
         function toggleSidebar() {
