@@ -64,8 +64,10 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
+      padding: 40px 20px;
+      text-align: center;
       margin-top: 50px;
-      gap: 30px;
+      gap: 40px;
     }
 
     .team-member {
@@ -76,6 +78,7 @@
       padding: 30px 20px;
       width: 250px;
       text-align: center;
+      flex-direction: column;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -85,12 +88,15 @@
     }
 
     .team-member img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      background-color: #fff;
+      object-position: center;
       border-radius: 50%;
-      border: 3px solid #fff;
+      border: 3px solid (135deg, #454549, #1a1a1a, #76767b);
       margin-bottom: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
     }
 
     .team-member h3 {
@@ -105,13 +111,17 @@
       margin-bottom: 0;
     }
 
+    /* Responsive Adjustments */
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
+      .team-container {
+        flex-direction: column;
+        align-items: center;
       }
 
       .team-member {
-        width: 90%;
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 30px;
       }
     }
   </style>
@@ -149,7 +159,7 @@
         <p>Illustrator</p>
       </div>
       <div class="team-member">
-        <img src="team3.jpg" alt="Teagan Gravelle">
+        <img src="team3.png" alt="Teagan Gravelle">
         <h3>Teagan Gravelle</h3>
         <p>Writer</p>
       </div>
