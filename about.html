@@ -41,7 +41,7 @@
         }
 
         .navbar-nav .nav-link:hover {
-            color: #e3d1b3;
+            color: #1c1c1c !important;
         }
 
         /* Hero Section Styling */
@@ -53,29 +53,38 @@
             color: white;
         }
 
-        .golden-arch {
-            margin-bottom: 20px;
+        .journey-path {
             display: flex;
+            align-items: center;
             justify-content: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+            font-family: monospace;
+            animation: fadeIn 2s ease-out;
         }
 
-        .arch-svg {
-            width: 200px;
-            height: 100px;
+        .journey-icon {
+            width: 350px; /* Adjust the width of the icon as needed */
+            height: auto; /* Maintain aspect ratio */
+            animation: snakeWave 4s ease-in-out infinite;
         }
 
-        .draw-arch {
-            stroke: #FFD700;
-            stroke-width: 4;
-            fill: none;
-            stroke-dasharray: 160; /* total length of path (can be adjusted) */
-            stroke-dashoffset: 160;
-            animation: drawArch 2.5s ease-out forwards;
-        }
-
-        @keyframes drawArch {
-            to {
-                stroke-dashoffset: 0;
+        @keyframes snakeWave {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+            25% {
+                transform: translateX(10px) translateY(15px);
+            }
+            50% {
+                transform: translateX(-10px) translateY(-15px);
+            }
+            75% {
+                transform: translateX(10px) translateY(15px);
+            }
+            100% {
+                transform: translateX(0) translateY(0);
             }
         }
 
@@ -227,11 +236,10 @@
     </nav>
 
     <section class="hero">
-        <div class="golden-arch">
-            <svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg" class="arch-svg">
-                <path d="M0,50 Q50,0 100,50" class="draw-arch"/>
-            </svg>
+        <div class="journey-path">
+            <img src="journey-icon.png" alt="Journey Icon" class="journey-icon">
         </div>
+               
         <h1>Our Journey</h1>
         <p>A journey from *no ideas* to *something incredible*. Let's take a look back at the evolution of this project.</p>
     </section>
