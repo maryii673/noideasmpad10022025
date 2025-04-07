@@ -54,11 +54,37 @@
       font-family: 'Shadows Into Light', cursive;
     }
 
+      h3 {
+      font-size: 2.8rem; /* Adjust the size of the h3 element */
+      font-weight: bold;
+    }
+
     .hero p {
       max-width: 700px;
       font-size: 1.2rem;
       opacity: 0.9;
     }
+
+    .click-icon {
+        display: block;
+        margin: -50px auto;
+        text-align: center;
+        animation: clickEffect 1s infinite ease-in-out; /* Click effect animation */
+    }
+
+    .click-icon img {
+        width: 150px; /* Adjust the icon size as needed */
+        height: auto;
+    }
+
+    @keyframes clickEffect {
+    0%, 100% {
+        transform: scale(1); /* Icon at its normal size */
+    }
+    50% {
+        transform: scale(0.9); /* Icon shrinks to simulate a click */
+    }
+}
 
     .team-container {
       display: flex;
@@ -73,13 +99,15 @@
     .team-member {
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       padding: 30px 20px;
-      width: 250px;
+      width: 450px;
       text-align: center;
       flex-direction: column;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      cursor: pointer;
     }
 
     .team-member:hover {
@@ -88,8 +116,8 @@
     }
 
     .team-member img {
-      width: 120px;
-      height: 120px;
+      width: 150px;
+      height: 150px;
       object-fit: contain;
       background-color: #fff;
       object-position: center;
@@ -111,7 +139,26 @@
       margin-bottom: 0;
     }
 
-    /* Responsive Adjustments */
+    .member-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      margin-top: 0;
+      opacity: 0;
+    }
+
+    .team-member.expanded .member-details {
+      max-height: 300px;
+      margin-top: 15px;
+      opacity: 1;
+    }
+    
+    .team-member ul {
+      padding-left: 20px;
+      list-style-type: disc;
+    }
+
+    
     @media (max-width: 768px) {
       .team-container {
         flex-direction: column;
@@ -125,6 +172,7 @@
       }
     }
   </style>
+
 </head>
 <body>
 
@@ -145,32 +193,76 @@
 
   <section class="hero">
     <h1>Meet Our Team</h1>
-    <p>The creators of <em>No Ideas</em>. A team of storytellers, artists, and programmers bring you an immersive experience in the world of digital storytelling. <br> MEET THE MEMBERS.</p>
-    
+    <p>The creators of <em>No Ideas</em>. A team of storytellers, artists, and programmers bring you an immersive experience in the world of digital storytelling. <br><br><strong>CLICK ON EACH CARD TO MEET THE TEAM MEMBERS.</strong></p>
+    <a href="#team-members" class="click-icon">
+      <img src="click-icon.png" alt="Click Icon"/>
+  </a>
+  
     <div class="team-container">
-      <div class="team-member">
+      <div class="team-member" onclick="toggleCard(this)">
         <img src="team1.png" alt="Kiana Emile">
-        <h3>Kiana Emile</h3>
-        <p>Web Developer</p>
+
+        <div class="member-details">
+          <h3>Kiana Emile</h3>
+          <p>Web Developer</p>
+          <ul>
+            <li>Designed entire webpage layout using HTML, CSS & JavaScript</li>
+            <li>Implemented all transitions and animations</li>
+            <li>Customized overall site functionality and responsiveness</li>
+          </ul>
+        </div>
       </div>
-      <div class="team-member">
+    
+      <div class="team-member" onclick="toggleCard(this)">
         <img src="team2.png" alt="Beracah Okere">
-        <h3>Beracah Okere</h3>
-        <p>Illustrator</p>
+        <div class="member-details">
+          <h3>Beracah Okere</h3>
+          <p>Illustrator</p>
+          <ul>
+            <li>Drew the cover page and characters from scratch</li>
+            <li>Illustrated every panel in the story</li>
+            <li>Created the character icon featured on this page</li>
+          </ul>
+        </div>
       </div>
-      <div class="team-member">
+    
+      <div class="team-member" onclick="toggleCard(this)">
         <img src="team3.png" alt="Teagan Gravelle">
-        <h3>Teagan Gravelle</h3>
-        <p>Writer</p>
+        <div class="member-details">
+          <h3>Teagan Gravelle</h3>
+          <p>Writer</p>
+          <ul>
+            <li>Developed the storyline and plot</li>
+            <li>Wrote most of the narrative and dialogue</li>
+            <li>Collaborated on the overall tone and flow of the story</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
+  
 
   <footer>
     <p>&copy; 2025 No Ideas. All Rights Reserved.</p>
 </footer>
 
+  <script>
+    function toggleCard(card) {
+      card.classList.toggle("expanded");
+
+       // Close all other cards (optional)
+    document.querySelectorAll(".team-member").forEach(el => {
+      if (el !== card) el.classList.remove("expanded");
+    });
+
+    // Toggle current card
+    card.classList.toggle("expanded", !isExpanded);
+  }
+
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
 
