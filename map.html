@@ -23,12 +23,10 @@
         }
 
         header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: 40px 0 30px;
-    }
+            text-align: center;
+            margin-top: 40px; /* Optional: adds space above */
+            margin-bottom: 30px; /* Optional: adds space below */
+        }
 
         header p {
             font-size: 1.4em;
@@ -373,7 +371,6 @@
             transform: scale(1.2); /* Slight zoom-in on hover */
         }
 
-
     </style>
 </head>
 <body>
@@ -670,6 +667,31 @@
         document.querySelectorAll('.chapter-title, .chapter-content').forEach(el => {
             observer.observe(el);
         });
+
+    
+    
+        // Function to get the query string value
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Scroll to the chapter on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const chapterId = getQueryParam('chapter'); // e.g., 'chapter1', 'chapter2', etc.
+            if (chapterId) {
+            const target = document.getElementById(chapterId);
+            if (target) {
+                // Delay to allow layout to finish rendering
+                setTimeout(() => {
+                target.scrollIntoView({ behavior: 'smooth' });
+                }, 200); // You can adjust the delay if needed
+            }
+            }
+        });
+
+        
+
 
 </script>
 
