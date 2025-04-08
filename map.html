@@ -28,6 +28,10 @@
             margin-bottom: 30px; /* Optional: adds space below */
         }
 
+        header h1{
+            font-size: 2.8em;
+        }
+
         header p {
             font-size: 1.4em;
             color: white; 
@@ -214,7 +218,45 @@
             margin: 30px auto;
             padding: 0 2rem;
             max-width: 1200px;
+            margin-top: 50px;
         }
+
+        /* Flashback Panels */
+        .flashback-panels {
+            opacity: 0;  /* Initially hidden */
+            transition: opacity 2s ease-in-out; /* Fade-in effect */
+            width: 30%;  /* Set a fixed size for the images */
+            height: auto;
+            object-fit: contain;
+            margin: 0 10px; /* Add some margin between each image */
+        }
+
+        /* When rotating, fade in the panels */
+        .flashback-panels.visible {
+            opacity: 1; /* Fade in to full visibility */
+        }
+
+        /* Flashback Panels container (to ensure spacing between panels) */
+        #flashback-panels {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;  /* Increased gap between the images */
+            margin-bottom: 50px; /* Add space between panels and any content below */
+        }
+
+        /* To stagger the panels' fade-in delay */
+        .flashback-panels:nth-child(1) {
+            transition-delay: 0s; /* First image fades in immediately */
+        }
+
+        .flashback-panels:nth-child(2) {
+            transition-delay: 0.3s; /* Second image fades in after 0.3s */
+        }
+
+        .flashback-panels:nth-child(3) {
+            transition-delay: 0.6s; /* Third image fades in after 0.6s */
+        }
+
 
         /* Responsive grid layout */
         .row-1 {
@@ -227,10 +269,6 @@
 
         .row-3 {
             grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        .row-4 {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
         }
 
         @media (max-width: 1100px) {
@@ -248,7 +286,6 @@
                 object-fit: cover;
             }
         }
-
 
         .panel:hover {
             transform: scale(1.03);
@@ -382,6 +419,45 @@
             transform: scale(1.2); /* Slight zoom-in on hover */
         }
 
+    
+      /* Styling for the clock-wrapper */
+
+      #compass-container {
+        margin-top: 100px;
+        }
+
+      #compass-wrapper {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+        margin-top: 60px;
+        }
+
+        #compass {
+        width: 100%;
+        height: auto;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+        transform-origin: 50% 50%; /* Rotate around center */
+        transition: transform 0.3s ease;
+        }
+
+        #compass-rotation {
+        width: 100%;
+        margin-top: 30px;
+        }
+
+        #compass-text {
+        margin-top: 25px;
+        font-style: italic;
+        color: #ccc;
+        text-align: center;
+        }
+
         footer {
         background-color: #1a1a1a;;
         color: white;
@@ -453,12 +529,31 @@
         </div>
         
         <p class="hidden">Norman tries to write but nothing comes. His frustration is obvious. He feels stuck.</p>
+
+        <!-- Interactivity trigger -->
+        <section id="compass-container">
+            <div>
+              <label for="compass-rotation">Spin the Compass To Help Norman Remember His Past!</label>
+              <p id="compass-text">Drag to Rotate the Compass ( <output id="compass-value">0</output> degrees)</p>
+            </div>
+          
+            <!-- Compass layout -->
+            <div id="compass-wrapper">
+              <div id="compass">
+              <img id="compass" src="compass-icon.png" alt="Compass">
+              </div>
+            </div>
+          
+            <!-- Range input to control the compass needle rotation -->
+            <input type="range" id="compass-rotation" min="0" max="360" value="0" step="1">
+          </section>
+          
         
         <!-- Third Panel Row with Three Panels -->
-        <div class="panel-row row-3 hidden">
-          <img class="panel revealing-image" src="Panel_5.png" alt="Chapter 1 Panel 5">
-          <img class="panel revealing-image" src="Panel_6.png" alt="Chapter 1 Panel 6">
-          <img class="panel revealing-image" src="Panel_7.png" alt="Chapter 1 Panel 7">
+        <div id="flashback-panels" class="panel-row row-3">
+          <img class="panel flashback-panels" src="Panel_5.png" alt="Chapter 1 Panel 5">
+          <img class="panel flashback-panels" src="Panel_6.png" alt="Chapter 1 Panel 6">
+          <img class="panel flashback-panels" src="Panel_7.png" alt="Chapter 1 Panel 7">
         </div>
 
         <p class="hidden">Tears fill Norman’s eyes as he struggles to find inspiration. He thinks of his dad.</p>
@@ -504,10 +599,6 @@
     </section>
   </div>
 
-
-
-
-  
   <!-- CHAPTER 2 -->
   <div id="chapter2">
     <h2 class="chapter-title hidden">CHAPTER 2: The Map</h2>
@@ -893,7 +984,29 @@
             }
             }
         });
-</script>
+
+    
+     // Compass Interactivity
+        const rotationInput = document.getElementById("compass-rotation");
+        const compass = document.getElementById("compass");
+        const compassValue = document.getElementById("compass-value");
+
+        rotationInput.addEventListener("input", function () {
+            const degrees = this.value;
+            compass.style.transform = `translate(-50%, -50%) rotate(${degrees}deg)`;
+            compassValue.textContent = degrees;
+        });
+
+    // Compass rotating linked to flashback panels
+
+        document.getElementById('compass-rotation').addEventListener('input', function() {
+        // Add the 'visible' class to the flashback panels when the compass is rotated
+        document.querySelectorAll('.flashback-panels').forEach(function(panel) {
+            panel.classList.add('visible');
+        });
+    });
+
+    </script>
 
 
 </body>
