@@ -211,10 +211,12 @@
         .panel-row {
             display: grid;
             gap: 20px;
-            margin: 30px 0;
+            margin: 30px auto;
+            padding: 0 2rem;
+            max-width: 1200px;
         }
 
-        /* Row Variants */
+        /* Responsive grid layout */
         .row-1 {
             grid-template-columns: 1fr;
         }
@@ -226,18 +228,23 @@
         .row-3 {
             grid-template-columns: 1fr 1fr 1fr;
         }
-    
 
-        /* Individual Panels */
-        .panel {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        @media (max-width: 1100px) {
+            .row-2,
+            .row-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                width: 100%;
+                height: auto;
+                max-width: 100%;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                object-fit: cover;
+            }
         }
+
 
         .panel:hover {
             transform: scale(1.03);
@@ -425,46 +432,112 @@
     <h2 class="chapter-title hidden">CHAPTER 1: The House</h2>
     <section class="chapter-section">
       <div class="chapter-content">
-        <p class="hidden">This chapter introduces the main characters...</p>
-        <div class="panel-row row-3 hidden">
+        <p class="hidden">A small, run-down house stands alone in the middle of the forest. The roof is broken, the walls are warped, and vines creep up the sides. One window glows faintly in the dark.</p>
+        
+        <!-- First Panel Row with One Panel -->
+        <div class="panel-row row-1 hidden">
           <img class="panel revealing-image" src="cover_page.png" alt="Chapter 1 Panel 1">
+        </div>
+
+        <p class="hidden">The air was thick with dust, and every step echoed against the cold stone floors.</p>
+        
+        <!-- Second Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
           <img class="panel revealing-image" src="cover_page.png" alt="Chapter 1 Panel 2">
           <img class="panel revealing-image" src="cover_page.png" alt="Chapter 1 Panel 3">
         </div>
-        <p class="hidden">The air was thick with dust, and every step echoed against the cold stone floors.</p>
-        <div class="panel-row row-2 hidden">
+        
+        <p class="hidden">Norman tries to write but nothing comes. His frustration is obvious. He feels stuck.</p>
+        
+        <!-- Third Panel Row with Three Panels -->
+        <div class="panel-row row-3 hidden">
           <img class="panel revealing-image" src="cover_page.png" alt="Chapter 1 Panel 4">
           <img class="panel revealing-image" src="cover_page.png" alt="Chapter 1 Panel 5">
-        </div>
-        <p class="hidden">They didn’t know it yet, but what waited beyond those walls would change them forever...</p>
-        <div class="panel-row row-1 hidden">
           <img class="panel revealing-image" src="cover_page.png" alt="Chapter 1 Panel 6">
         </div>
-      </div>
+
+        <p class="hidden">Tears fill Norman’s eyes as he struggles to find inspiration. He thinks of his dad.</p>
+        
+        <!-- Fourth Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="cover_page.png" alt="Chapter 1 Panel 7">
+          <img class="panel revealing-image" src="cover_page.png" alt="Chapter 1 Panel 8">
+        </div>
+        
+        <p class="hidden">He remembers the day he stood by his dad’s grave. It feels like it was just yesterday.</p>
+        
+        <!-- Fifth Panel Row with One Panel -->
+        <div class="panel-row row-1 hidden">
+          <img class="panel revealing-image" src="cover_page.png" alt="Chapter 1 Panel 9">
+        </div>
+
+        <p class="hidden">Norman takes a deep breath and walks toward the book his mom gave him. He’s determined to keep moving forward.</p>
+
+        <!-- Sixth Panel Row with Three Panels -->
+        <div class="panel-row row-3 hidden">
+          <img class="panel revealing-image" src="cover_page.png" alt="Chapter 1 Panel 10">
+          <img class="panel revealing-image" src="cover_page.png" alt="Chapter 1 Panel 11">
+          <img class="panel revealing-image" src="cover_page.png" alt="Chapter 1 Panel 12">
+        </div>
     </section>
   </div>
+
+
+
+
   
   <!-- CHAPTER 2 -->
   <div id="chapter2">
     <h2 class="chapter-title hidden">CHAPTER 2: The Map</h2>
     <section class="chapter-section">
-      <div class="chapter-content">
+    <section class="chapter-content">
         <p class="hidden">This chapter introduces the main characters...</p>
+
+        <!-- First Panel Row with Two Panels -->
         <div class="panel-row row-2 hidden">
-          <img class="panel revealing-image" src="chapter2-img1.jpg" alt="Chapter 2 Panel 1">
+          <img class="panel revealing-image" src="cover_page.png" alt="Chapter 2 Panel 1">
           <img class="panel revealing-image" src="chapter2-img2.jpg" alt="Chapter 2 Panel 2">
         </div>
+    
         <p class="hidden">The air was thick with dust, and every step echoed against the cold stone floors.</p>
-        <div class="panel-row row-3 hidden">
+    
+        <!-- Second Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
           <img class="panel revealing-image" src="chapter2-img3.jpg" alt="Chapter 2 Panel 3">
           <img class="panel revealing-image" src="chapter2-img4.jpg" alt="Chapter 2 Panel 4">
-          <img class="panel revealing-image" src="chapter2-img5.jpg" alt="Chapter 2 Panel 5">
         </div>
+    
         <p class="hidden">They didn’t know it yet, but what waited beyond those walls would change them forever...</p>
-        <div class="panel-row row-1 hidden">
+    
+        <!-- Third Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter2-img5.jpg" alt="Chapter 2 Panel 5">
           <img class="panel revealing-image" src="chapter2-img6.jpg" alt="Chapter 2 Panel 6">
         </div>
-      </div>
+    
+        <p class="hidden">As the map is uncovered, the mystery deepens, and the path forward becomes clearer.</p>
+    
+        <!-- Fourth Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter2-img7.jpg" alt="Chapter 2 Panel 7">
+          <img class="panel revealing-image" src="chapter2-img8.jpg" alt="Chapter 2 Panel 8">
+        </div>
+    
+        <p class="hidden">They begin to decipher the ancient symbols on the map, each one telling a story of its own.</p>
+    
+        <!-- Fifth Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter2-img9.jpg" alt="Chapter 2 Panel 9">
+          <img class="panel revealing-image" src="chapter2-img10.jpg" alt="Chapter 2 Panel 10">
+        </div>
+    
+        <p class="hidden">The group realizes they must act quickly before the map’s secrets are lost forever.</p>
+    
+        <!-- Sixth Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter2-img11.jpg" alt="Chapter 2 Panel 11">
+          <img class="panel revealing-image" src="chapter2-img12.jpg" alt="Chapter 2 Panel 12">
+        </div>
     </section>
   </div>
   
@@ -474,21 +547,52 @@
     <section class="chapter-section">
       <div class="chapter-content">
         <p class="hidden">This chapter introduces the main characters...</p>
-        <div class="panel-row row-1 hidden">
-          <img class="panel revealing-image" src="chapter3-img1.jpg" alt="Chapter 3 Panel 1">
-        </div>
-        <p class="hidden">The air was thick with dust, and every step echoed against the cold stone floors.</p>
+
+        <!-- First Panel Row with Two Panels -->
         <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="cover_page.png" alt="Chapter 3 Panel 1">
           <img class="panel revealing-image" src="chapter3-img2.jpg" alt="Chapter 3 Panel 2">
-          <img class="panel revealing-image" src="chapter3-img3.jpg" alt="Chapter 3 Panel 3">
         </div>
-        <p class="hidden">They didn’t know it yet, but what waited beyond those walls would change them forever...</p>
-        <div class="panel-row row-3 hidden">
+    
+        <p class="hidden">The air was thick with dust, and every step echoed against the cold stone floors.</p>
+    
+        <!-- Second Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter3-img3.jpg" alt="Chapter 3 Panel 3">
           <img class="panel revealing-image" src="chapter3-img4.jpg" alt="Chapter 3 Panel 4">
+        </div>
+    
+        <p class="hidden">They didn’t know it yet, but what waited beyond those walls would change them forever...</p>
+    
+        <!-- Third Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
           <img class="panel revealing-image" src="chapter3-img5.jpg" alt="Chapter 3 Panel 5">
           <img class="panel revealing-image" src="chapter3-img6.jpg" alt="Chapter 3 Panel 6">
         </div>
-      </div>
+    
+        <p class="hidden">As the map is uncovered, the mystery deepens, and the path forward becomes clearer.</p>
+    
+        <!-- Fourth Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter3-img7.jpg" alt="Chapter 3 Panel 7">
+          <img class="panel revealing-image" src="chapter3-img8.jpg" alt="Chapter 3 Panel 8">
+        </div>
+    
+        <p class="hidden">They begin to decipher the ancient symbols on the map, each one telling a story of its own.</p>
+    
+        <!-- Fifth Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter3-img9.jpg" alt="Chapter 3 Panel 9">
+          <img class="panel revealing-image" src="chapter3-img10.jpg" alt="Chapter 3 Panel 10">
+        </div>
+    
+        <p class="hidden">The group realizes they must act quickly before the map’s secrets are lost forever.</p>
+    
+        <!-- Sixth Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter3-img11.jpg" alt="Chapter 3 Panel 11">
+          <img class="panel revealing-image" src="chapter3-img12.jpg" alt="Chapter 3 Panel 12">
+        </div>
     </section>
   </div>
   
@@ -498,21 +602,52 @@
     <section class="chapter-section">
       <div class="chapter-content">
         <p class="hidden">This chapter introduces the main characters...</p>
-        <div class="panel-row row-3 hidden">
-          <img class="panel revealing-image" src="chapter4-img1.jpg" alt="Chapter 4 Panel 1">
-          <img class="panel revealing-image" src="chapter4-img2.jpg" alt="Chapter 4 Panel 2">
-          <img class="panel revealing-image" src="chapter4-img3.jpg" alt="Chapter 4 Panel 3">
-        </div>
-        <p class="hidden">The air was thick with dust, and every step echoed against the cold stone floors.</p>
+
+        <!-- First Panel Row with Two Panels -->
         <div class="panel-row row-2 hidden">
-          <img class="panel revealing-image" src="chapter4-img4.jpg" alt="Chapter 4 Panel 4">
-          <img class="panel revealing-image" src="chapter4-img5.jpg" alt="Chapter 4 Panel 5">
+          <img class="panel revealing-image" src="cover_page.png" alt="Chapter 4 Panel 1">
+          <img class="panel revealing-image" src="chapter4-img2.jpg" alt="Chapter 4 Panel 2">
         </div>
+    
+        <p class="hidden">The air was thick with dust, and every step echoed against the cold stone floors.</p>
+    
+        <!-- Second Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter4-img3.jpg" alt="Chapter 4 Panel 3">
+          <img class="panel revealing-image" src="chapter4-img4.jpg" alt="Chapter 4 Panel 4">
+        </div>
+    
         <p class="hidden">They didn’t know it yet, but what waited beyond those walls would change them forever...</p>
-        <div class="panel-row row-1 hidden">
+    
+        <!-- Third Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter4-img5.jpg" alt="Chapter 4 Panel 5">
           <img class="panel revealing-image" src="chapter4-img6.jpg" alt="Chapter 4 Panel 6">
         </div>
-      </div>
+    
+        <p class="hidden">As the map is uncovered, the mystery deepens, and the path forward becomes clearer.</p>
+    
+        <!-- Fourth Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter4-img7.jpg" alt="Chapter 4 Panel 7">
+          <img class="panel revealing-image" src="chapter4-img8.jpg" alt="Chapter 4 Panel 8">
+        </div>
+    
+        <p class="hidden">They begin to decipher the ancient symbols on the map, each one telling a story of its own.</p>
+    
+        <!-- Fifth Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter4-img9.jpg" alt="Chapter 4 Panel 9">
+          <img class="panel revealing-image" src="chapter4-img10.jpg" alt="Chapter 4 Panel 10">
+        </div>
+    
+        <p class="hidden">The group realizes they must act quickly before the map’s secrets are lost forever.</p>
+    
+        <!-- Sixth Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter4-img11.jpg" alt="Chapter 4 Panel 11">
+          <img class="panel revealing-image" src="chapter4-img12.jpg" alt="Chapter 4 Panel 12">
+        </div>
     </section>
   </div>
   
@@ -520,18 +655,54 @@
   <div id="chapter5">
     <h2 class="chapter-title hidden">CHAPTER 5: The Oak Tree</h2>
     <section class="chapter-section">
-      <div class="chapter-content">
+    <div class="chapter-content">
         <p class="hidden">This chapter introduces the main characters...</p>
-        <div class="panel-row row-1 hidden">
-          <img class="panel revealing-image" src="chapter5-img1.jpg" alt="Chapter 5 Panel 1">
-        </div>
-        <p class="hidden">The air was thick with dust, and every step echoed against the cold stone floors.</p>
+
+        <!-- First Panel Row with Two Panels -->
         <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="cover_page.png" alt="Chapter 5 Panel 1">
           <img class="panel revealing-image" src="chapter5-img2.jpg" alt="Chapter 5 Panel 2">
-          <img class="panel revealing-image" src="chapter5-img3.jpg" alt="Chapter 5 Panel 3">
         </div>
+    
+        <p class="hidden">The air was thick with dust, and every step echoed against the cold stone floors.</p>
+    
+        <!-- Second Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter5-img3.jpg" alt="Chapter 5 Panel 3">
+          <img class="panel revealing-image" src="chapter5-img4.jpg" alt="Chapter 5 Panel 4">
+        </div>
+    
         <p class="hidden">They didn’t know it yet, but what waited beyond those walls would change them forever...</p>
-      </div>
+    
+        <!-- Third Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter5-img5.jpg" alt="Chapter 5 Panel 5">
+          <img class="panel revealing-image" src="chapter5-img6.jpg" alt="Chapter 5 Panel 6">
+        </div>
+    
+        <p class="hidden">As the map is uncovered, the mystery deepens, and the path forward becomes clearer.</p>
+    
+        <!-- Fourth Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter5-img7.jpg" alt="Chapter 5 Panel 7">
+          <img class="panel revealing-image" src="chapter5-img8.jpg" alt="Chapter 5 Panel 8">
+        </div>
+    
+        <p class="hidden">They begin to decipher the ancient symbols on the map, each one telling a story of its own.</p>
+    
+        <!-- Fifth Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter5-img9.jpg" alt="Chapter 5 Panel 9">
+          <img class="panel revealing-image" src="chapter5-img10.jpg" alt="Chapter 5 Panel 10">
+        </div>
+    
+        <p class="hidden">The group realizes they must act quickly before the map’s secrets are lost forever.</p>
+    
+        <!-- Sixth Panel Row with Two Panels -->
+        <div class="panel-row row-2 hidden">
+          <img class="panel revealing-image" src="chapter5-img11.jpg" alt="Chapter 5 Panel 11">
+          <img class="panel revealing-image" src="chapter5-img12.jpg" alt="Chapter 5 Panel 12">
+        </div>
     </section>
   </div>
   
@@ -542,17 +713,19 @@
     <h2 class="chapter-title hidden">EPILOGUE: The Book</h2>
     <section class="chapter-section">
       <div class="chapter-content">
-        <p class="hidden">The silence that followed wasn't emptiness—it was peace.</p>
+        <p class="hidden">This chapter introduces the main characters...</p>
+
+        <!-- First Panel Row with Two Panels -->
         <div class="panel-row row-1 hidden">
-          <img class="panel revealing-image" src="epilogue1.jpg" alt="Epilogue Image 1">
+          <img class="panel revealing-image" src="cover_page.png" alt="Epilogue Panel 1">
         </div>
-        <p class="hidden">Time had weathered the pages, but her story remained inked in every word.</p>
-        <div class="panel-row row-2 hidden">
-          <img class="panel revealing-image" src="epilogue2.jpg" alt="Epilogue Image 2">
-          <img class="panel revealing-image" src="epilogue3.jpg" alt="Epilogue Image 3">
+    
+        <p class="hidden">The air was thick with dust, and every step echoed against the cold stone floors.</p>
+    
+        <!-- Second Panel Row with Two Panels -->
+        <div class="panel-row row-1 hidden">
+          <img class="panel revealing-image" src="cover_page.png" alt="Epilogue Panel 2">
         </div>
-        <p class="hidden">And as the final chapter closed, the book whispered one last truth: it was never just about the ending, but everything in between.</p>
-      </div>
     </section>
   </div>
   
