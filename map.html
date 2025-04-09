@@ -1225,54 +1225,59 @@
 
 
    // Thunder shake for panel 8
-   document.addEventListener('DOMContentLoaded', () => {
-    const panel8 = document.getElementById('panel-8');
-    const thunderSound = document.getElementById('thunderSound');
-    
-    let hasPlayedThunder = false;  // Flag to ensure sound plays only once
-    let thunderPlayCount = 0;      // Counter for thunder sound repetitions
+    document.addEventListener('DOMContentLoaded', () => {
+        const panel8 = document.getElementById('panel-8');
+        const thunderSound = document.getElementById('thunderSound');
+        
+        let thunderPlayCount = 0;  // Counter for thunder sound repetitions
 
-    // Function to trigger the thunder shake effect
-    function triggerThunderShake() {
-        let shakeCount = 0;
-        const totalShakes = 3;
+        // Function to trigger the thunder shake effect
+        function triggerThunderShake() {
+            let shakeCount = 0;
+            const totalShakes = 3;  // Total number of shakes to perform
 
-        // Prevent shake if it's already happening
-        if (panel8.classList.contains('thunder-effect')) return;
+            let shakeInterval = setInterval(() => {
+                panel8.classList.add('thunder-effect');
 
-        let shakeInterval = setInterval(() => {
-            panel8.classList.add('thunder-effect');
+                // Play thunder sound 3 times when panel first enters view
+                if (thunderPlayCount < 3) {
+                    thunderSound.play();
+                    thunderPlayCount++;  // Increment the play count after each sound
+                }
 
-             // Play thunder sound 3 times on first scroll
-             if (thunderPlayCount < 3) {
-                thunderSound.play();
-                thunderPlayCount++;  // Increment the play count after each sound
-            }
+                // Remove the shake effect after 1.5 seconds
+                setTimeout(() => {
+                    panel8.classList.remove('thunder-effect');
+                }, 1500);
 
-            // Remove the shake effect after 1.5 seconds
-            setTimeout(() => {
-                panel8.classList.remove('thunder-effect');
-            }, 1500);
+                shakeCount++;
+                if (shakeCount >= totalShakes) {
+                    clearInterval(shakeInterval);  // Stop shaking after total shakes
+                }
+            }, 1000);  // Shake every 1 second (adjustable for desired timing)
+        }
 
-            shakeCount++;
-            if (shakeCount >= totalShakes) {
-                clearInterval(shakeInterval);  // Stop shaking after total shakes
-            }
-        }, 1000);  // Shake every 1.8 seconds
-    }
+        // Scroll event to check if the panel is in view
+        window.addEventListener('scroll', () => {
+            const rect = panel8.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
 
-    // Scroll event to check if the panel is in view
-    window.addEventListener('scroll', () => {
-        const rect = panel8.getBoundingClientRect();
-        const inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-   // Trigger the thunder shake 3 times only when the panel first enters view
-      if (inView && !hasPlayedThunder) {
-                triggerThunderShake();  // Trigger shake if the panel is in view
-                hasPlayedThunder = true;  // Mark as played to prevent further triggering
+            // Trigger the thunder shake when the panel enters view and shakes can continue
+            if (inView) {
+                if (thunderPlayCount < 3) {
+                    // Trigger the thunder shake with sound on the first scroll
+                    triggerThunderShake();
+                } else {
+                    // Continue shaking without sound after the 3rd thunder sound
+                    panel8.classList.add('thunder-effect');
+                    setTimeout(() => {
+                        panel8.classList.remove('thunder-effect');
+                    }, 1500);
+                }
             }
         });
     });
+
 
     
 // Shock animation for panel 15
