@@ -1230,6 +1230,7 @@
     const thunderSound = document.getElementById('thunderSound');
     
     let hasPlayedThunder = false;  // Flag to ensure sound plays only once
+    let thunderPlayCount = 0;      // Counter for thunder sound repetitions
 
     // Function to trigger the thunder shake effect
     function triggerThunderShake() {
