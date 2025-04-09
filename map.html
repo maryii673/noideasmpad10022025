@@ -502,98 +502,181 @@
       }
 
       /* Shock Animation for Panel 15 */
-      .shock-animation {
-      position: relative;
-      display: inline-block;
-      animation: shock-pulse 0.6s ease-out;
-    }
+        .shock-animation {
+        position: relative;
+        display: inline-block;
+        animation: shock-pulse 0.6s ease-out;
+      }
 
-    @keyframes shock-pulse {
-      0% {
-        transform: scale(1);
+      @keyframes shock-pulse {
+        0% {
+          transform: scale(1);
+        }
+        30% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
       }
-      30% {
-        transform: scale(1.1);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
 
-    .shock-ripple {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 250px;
-      height: 250px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      transform: translate(-50%, -50%) scale(0);
+      .shock-ripple {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 250px;
+        height: 250px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        animation: ripple-burst 0.7s ease-out forwards;
+        pointer-events: none;
+      }
+
+      @keyframes ripple-burst {
+        to {
+          transform: translate(-50%, -50%) scale(2);
+          opacity: 0;
+        }
+      }
+
+      .shock-exclamations {
+        position: absolute;
+        top: -100px;
+        left: -5%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 5rem;
+        color: #fff;
+        animation: exclamation-animation 1s ease-in-out infinite;
+      }
+
+      .shock-exclamations img {
+        width: 410px;  /* Adjust size of the PNG image */
+        height: auto;
+      }
+
+      @keyframes exclamation-animation {
+        0% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: scale(1.2); /* Only pulse */
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+      }
+
+      @keyframes exclamation-fade {
+        0% {
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+
+      /* Add this to make the shock effect conditional */
+    .shock-animation.shock-active .shock-ripple {
       animation: ripple-burst 0.7s ease-out forwards;
-      pointer-events: none;
     }
 
-    @keyframes ripple-burst {
-      to {
-        transform: translate(-50%, -50%) scale(2);
-        opacity: 0;
-      }
-    }
-
-    .shock-exclamations {
-      position: absolute;
-      top: -100px;
-      left: -5%;
-      transform: translateX(-50%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 5rem;
-      color: #fff;
+    .shock-animation.shock-active .shock-exclamations {
       animation: exclamation-animation 1s ease-in-out infinite;
     }
 
-    .shock-exclamations img {
-      width: 430px;  /* Adjust size of the PNG image */
-      height: auto;
-    }
+    /* Initially hide the letter */
+      .is-hidden {
+        display: none;
+      }
 
-    @keyframes exclamation-animation {
-      0% {
-        transform: scale(1);
-        opacity: 0.8;
+      /* Styling for the letter container */
+      #letterSection {
+        text-align: center; /* Center the content */
+        margin-top: 50px;
+        padding: 20px;
       }
-      50% {
-        transform: scale(1.2); /* Only pulse */
-        opacity: 1;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 0.8;
-      }
-    }
 
-    @keyframes exclamation-fade {
-      0% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-      }
-    }
+      /* Basic styles for the letter */
+      .letter {
+        padding: 100px 40px; /* Increased padding for more space inside the letter */
+        background-image: url('letter.png'); /* Set the PNG background */
+        background-size: contain; /* Ensure the image is fully visible */
+        background-repeat: no-repeat; /* Prevent img from repeating */
+        background-position: top center; /* Center the image */
+        max-width: 1000px; /* Further increased max width for better readability */
+        max-height: 700px; /* Set a max height to allow for bigger letter */
+        margin: 70px auto; /* Increased margin for more space around the letter */
+        font-family: Arial, sans-serif;
+        text-align: left;
+        color: black; /* Set text color to black */
+        line-height: 1.6; /* Increased line height for better readability */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Added more shadow for better depth */
+        position: relative; /* Allows precise positioning of text */
 
+        /* Flexbox to center content vertically and horizontally */
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center; /* Ensures text is centered */
+      }
+      
 
-    /* Add this to make the shock effect conditional */
-  .shock-animation.shock-active .shock-ripple {
-    animation: ripple-burst 0.7s ease-out forwards;
-  }
+     /* Styling for the text inside the letter */
+      .letter p {
+        font-size: 16px; /* Smaller text size */
+        position: relative;
+        z-index: 2; /* Ensure text appears above the background image */
+        margin-bottom: 20px; /* Space between text elements */
+        margin-top: 50px;
+      }
 
-  .shock-animation.shock-active .shock-exclamations {
-    animation: exclamation-animation 1s ease-in-out infinite;
-  }
+      /* Button styling */
+      button {
+        padding: 16px 32px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        border-radius: 5px; /* Rounded corners */
+        margin: 20px 0; /* Add some space between buttons */
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      button:focus {
+        outline: none;
+      }
+
+      /* Add spacing between the panels and the text above the letter section */
+      .letter-notice {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      /* Add space around the section */
+      #letterSection {
+        margin-top: 50px;
+        padding: 20px;
+      }
+
 
       /* Styling for the clock-wrapper */
 
@@ -741,9 +824,9 @@
         <img class="panel flashback-panels" src="Panel_6.png" alt="Chapter 1 Panel 6">
     </div>
 
-        <p class="hidden"> A flashback to Norman and his mom standing at his dad's grave, the sorrow heavy in the air.</p>
-        <p class="hidden"> Norman recalls crying to his mom about his father's death, her silent comfort in return.<p>
-        <p class="hidden"> Norman's mom hands him a book that belonged to his father, offering it silently.</p>
+        <p class="hidden"><em>A flashback to Norman and his mom standing at his dad's grave, the sorrow heavy in the air.</em></p>
+        <p class="hidden"><em>Norman recalls crying to his mom about his father's death, her silent comfort in return.</em><p>
+        <p class="hidden"><em>Norman's mom hands him a book that belonged to his father, offering it silently.</em></p>
 
            <!-- Fourth Panel Row with One Panel -->
            <div class="panel-row row-1 hidden">
@@ -785,6 +868,22 @@
 
         <p class="hidden">Norman notices the crow with something in its beak.<br> Intrigued, he steps closer to get a better look.<br> It's a letter.</p>
 
+      <!-- Section containing the button and letter -->
+      <section id="letterSection">
+        <!-- Button to Open the Letter -->
+        <button id="openLetterButton">Read Letter</button>
+
+        <!-- The Letter Container -->
+        <div id="letterContainer" class="is-hidden">
+          <div class="letter">
+            <p><strong>Dear Norman,</strong></p>
+            <p>There’s only so much I can say right now.<br> I know the past few years have been incredibly tough on you, but it’s time to move forward.<br> The answers will come in time. You’ll understand soon enough.<br>With love,<br> Dad.</p>
+            <!-- Button to Close the Letter -->
+            <button id="closeLetterButton">Close Letter</button>
+          </div>
+        </div>
+      </section>
+
          <!-- Nineth Panel Row with One Panel -->
          <div class="panel-row row-1 hidden shock-effect">
           <div class="shock-animation" id="shock_panel">
@@ -799,7 +898,7 @@
 
           <p class="hidden">Norman’s eyes widen as he reads the letter, stunned by the revelation that his father is alive.</p>
 
-          <!-- Have to add the letter thing -->
+
     </div>
   </section>
 </div>
@@ -1286,6 +1385,26 @@
 
   shockObserver.observe(shockImg);
 
+
+// Letter Button
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get the elements
+    const openLetterButton = document.getElementById('openLetterButton');
+    const closeLetterButton = document.getElementById('closeLetterButton');
+    const letterContainer = document.getElementById('letterContainer');
+
+    // Add event listener to the "Read Letter" button
+    openLetterButton.addEventListener('click', function() {
+      // Show the letter when "Read Letter" is clicked
+      letterContainer.classList.remove('is-hidden');
+    });
+
+    // Add event listener to the "Close Letter" button
+    closeLetterButton.addEventListener('click', function() {
+      // Close the letter and hide it again
+      letterContainer.classList.add('is-hidden');
+    });
+  });
 
 
 
