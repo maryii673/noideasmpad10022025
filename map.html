@@ -1226,58 +1226,51 @@
 
    // Thunder shake for panel 8
     document.addEventListener('DOMContentLoaded', () => {
-        const panel8 = document.getElementById('panel-8');
-        const thunderSound = document.getElementById('thunderSound');
-        
-        let thunderPlayCount = 0;  // Counter for thunder sound repetitions
+      const panel8 = document.getElementById('panel-8');
+      const thunderSound = document.getElementById('thunderSound');
+      
+      let hasPlayedThunder = false;  // Flag to ensure sound plays only once when first scroll
 
-        // Function to trigger the thunder shake effect
-        function triggerThunderShake() {
-            let shakeCount = 0;
-            const totalShakes = 3;  // Total number of shakes to perform
+      // Function to trigger the thunder shake effect
+      function triggerThunderShake() {
+          let shakeCount = 0;
+          const totalShakes = 2;  // You can change this value to adjust the number of shakes
 
-            let shakeInterval = setInterval(() => {
-                panel8.classList.add('thunder-effect');
+          // Prevent shake if it's already happening
+          if (panel8.classList.contains('thunder-effect')) return;
 
-                // Play thunder sound 3 times when panel first enters view
-                if (thunderPlayCount < 3) {
-                    thunderSound.play();
-                    thunderPlayCount++;  // Increment the play count after each sound
-                }
+          let shakeInterval = setInterval(() => {
+              panel8.classList.add('thunder-effect');
 
-                // Remove the shake effect after 1.5 seconds
-                setTimeout(() => {
-                    panel8.classList.remove('thunder-effect');
-                }, 1500);
+              // Play thunder sound each time (repeat 3 times or any other number)
+              if (!hasPlayedThunder) {
+                  thunderSound.play();
+                  hasPlayedThunder = true;  // Mark the sound as played only on the first scroll
+              }
 
-                shakeCount++;
-                if (shakeCount >= totalShakes) {
-                    clearInterval(shakeInterval);  // Stop shaking after total shakes
-                }
-            }, 1000);  // Shake every 1 second (adjustable for desired timing)
-        }
+              // Remove the shake effect after 1.5 seconds
+              setTimeout(() => {
+                  panel8.classList.remove('thunder-effect');
+              }, 1500);
 
-        // Scroll event to check if the panel is in view
-        window.addEventListener('scroll', () => {
-            const rect = panel8.getBoundingClientRect();
-            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+              shakeCount++;
+              if (shakeCount >= totalShakes) {
+                  clearInterval(shakeInterval);  // Stop shaking after total shakes
+              }
+          }, 1000);  // Shake every 1 second (adjustable for the desired timing)
+      }
 
-            // Trigger the thunder shake when the panel enters view and shakes can continue
-            if (inView) {
-                if (thunderPlayCount < 3) {
-                    // Trigger the thunder shake with sound on the first scroll
-                    triggerThunderShake();
-                } else {
-                    // Continue shaking without sound after the 3rd thunder sound
-                    panel8.classList.add('thunder-effect');
-                    setTimeout(() => {
-                        panel8.classList.remove('thunder-effect');
-                    }, 1500);
-                }
-            }
-        });
-    });
+      // Scroll event to check if the panel is in view
+      window.addEventListener('scroll', () => {
+          const rect = panel8.getBoundingClientRect();
+          const inView = rect.top < window.innerHeight && rect.bottom > 0;
 
+          // Trigger the thunder shake only the first time the panel enters view
+          if (inView && !hasPlayedThunder) {
+              triggerThunderShake();  // Trigger shake if the panel is in view
+          }
+      });
+  });
 
     
 // Shock animation for panel 15
