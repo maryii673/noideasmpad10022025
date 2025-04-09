@@ -1265,13 +1265,22 @@
           const rect = panel8.getBoundingClientRect();
           const inView = rect.top < window.innerHeight && rect.bottom > 0;
 
-          // Trigger the thunder shake only the first time the panel enters view
-          if (inView && !hasPlayedThunder) {
-              triggerThunderShake();  // Trigger shake if the panel is in view
-          }
-      });
-  });
-
+        
+        // Trigger the thunder shake when the panel enters view and shakes can continue
+        if (inView) {
+            if (thunderPlayCount) {
+                // Trigger the thunder shake with sound on the first scroll
+                triggerThunderShake();
+            } else {
+                // Continue shaking without sound after the 3rd thunder sound
+                panel8.classList.add('thunder-effect');
+                setTimeout(() => {
+                    panel8.classList.remove('thunder-effect');
+                }, 1500);
+            }
+        }
+    });
+}); 
     
 // Shock animation for panel 15
   const shockImg = document.getElementById('shock_panel');
