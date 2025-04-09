@@ -419,7 +419,182 @@
             transform: scale(1.2); /* Slight zoom-in on hover */
         }
 
-    
+       /* Rain Overlay for Panel 1 */
+        .rain-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Ensure the rain doesn't interfere with other interactions */
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Styling individual raindrops with faded look */
+        .raindrop {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.3); /* Light, transparent color for raindrops */
+            width: 3px; /* Thinner drops */
+            height: 50px; /* Longer drops for the pouring effect */
+            animation: fall 0.5s linear infinite; /* Animation to make raindrops fall */
+        }
+
+        /* Falling animation for rain */
+        @keyframes fall {
+            0% {
+                transform: translateY(-210px); /* Start above the screen */
+            }
+            100% {
+                transform: translateY(60vh); /* Move to the bottom of the screen */
+            }
+        }
+
+        /* Adding some variation in raindrop positions and speeds */
+        .rain-overlay .raindrop:nth-child(odd) {
+            left: 5%;
+            animation-duration: 0.4s; /* Faster drops for more intensity */
+            animation-delay: 0.2s;
+        }
+
+        .rain-overlay .raindrop:nth-child(even) {
+            left: 25%;
+            animation-duration: 0.5s;
+            animation-delay: 0.5s;
+        }
+
+        .rain-overlay .raindrop:nth-child(3) {
+            left: 45%;
+            animation-duration: 0.6s;
+            animation-delay: 0.8s;
+        }
+
+        .rain-overlay .raindrop:nth-child(4) {
+            left: 65%;
+            animation-duration: 0.7s;
+            animation-delay: 1s;
+        }
+
+        .rain-overlay .raindrop:nth-child(5) {
+            left: 85%;
+            animation-duration: 0.45s;
+            animation-delay: 1.2s;
+        }
+      
+       
+       /* Thunder Animate for Panel 8 */
+       @keyframes thunderShake {
+        0%, 100% { transform: translate(0, 0); }
+        5% { transform: translate(-30px, 25px); }
+        10% { transform: translate(30px, -30px); }
+        15% { transform: translate(-25px, 25px); }
+        20% { transform: translate(25px, -20px); }
+        25% { transform: translate(-20px, 15px); }
+        30% { transform: translate(20px, -25px); }
+        35% { transform: translate(-30px, 30px); }
+        40% { transform: translate(30px, -30px); }
+        45% { transform: translate(-25px, 25px); }
+        50% { transform: translate(25px, -25px); }
+      }
+
+      .thunder-effect {
+        animation: thunderShake 1.5s ease;
+      }
+
+      /* Shock Animation for Panel 15 */
+      .shock-animation {
+      position: relative;
+      display: inline-block;
+      animation: shock-pulse 0.6s ease-out;
+    }
+
+    @keyframes shock-pulse {
+      0% {
+        transform: scale(1);
+      }
+      30% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .shock-ripple {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 250px;
+      height: 250px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      animation: ripple-burst 0.7s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes ripple-burst {
+      to {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+      }
+    }
+
+    .shock-exclamations {
+      position: absolute;
+      top: -100px;
+      left: -5%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 5rem;
+      color: #fff;
+      animation: exclamation-animation 1s ease-in-out infinite;
+    }
+
+    .shock-exclamations img {
+      width: 430px;  /* Adjust size of the PNG image */
+      height: auto;
+    }
+
+    @keyframes exclamation-animation {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: scale(1.2); /* Only pulse */
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+    }
+
+    @keyframes exclamation-fade {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+
+    /* Add this to make the shock effect conditional */
+  .shock-animation.shock-active .shock-ripple {
+    animation: ripple-burst 0.7s ease-out forwards;
+  }
+
+  .shock-animation.shock-active .shock-exclamations {
+    animation: exclamation-animation 1s ease-in-out infinite;
+  }
+
       /* Styling for the clock-wrapper */
 
       #compass-container {
@@ -516,7 +691,16 @@
         
         <!-- First Panel Row with One Panel -->
         <div class="panel-row row-1 hidden">
-          <img class="panel revealing-image" src="Panel_1.png" alt="Chapter 1 Panel 1">
+          <img id="panel_1" class="panel revealing-image" src="Panel_1.png" alt="Chapter 1 Panel 1">
+          <div class="rain-overlay">
+             <!-- These divs simulate raindrops -->
+            <div class="raindrop"></div>
+            <div class="raindrop"></div>
+            <div class="raindrop"></div>
+            <div class="raindrop"></div>
+            <div class="raindrop"></div>
+            <!-- Add as many raindrop divs as needed -->
+          </div>  
         </div>
 
         <p class="hidden">Norman struggles to write, his cursor hovering over a blank page.<br> His frustration is obvious. He feels stuck. </p>
@@ -525,7 +709,9 @@
         <div class="panel-row row-2 hidden">
           <img class="panel revealing-image" src="Panel_2.png" alt="Chapter 1 Panel 2">
           <img class="panel revealing-image" src="Panel_3.png" alt="Chapter 1 Panel 3">
-        </div>
+    </div>
+
+       
         
         <p class="hidden">Tears fall from Norman's overwhelmed eyes as he struggles to find inspiration.<br> He thinks of his dad. </p>
 
@@ -568,11 +754,13 @@
         
         <!-- Fifth Panel Row with Two Panels -->
         <div class="panel-row row-1 hidden">
-          <img class="panel revealing-image" src="Panel_8.png" alt="Chapter 1 Panel 8">
+          <img id="panel-8" class="panel revealing-image" src="Panel_8.png" alt="Chapter 1 Panel 8">
+          <audio id="thunderSound" src="thunder.mp3" preload="auto"></audio>
         </div>
         
         <p class="hidden">Meanwhile, a storm starts to rage outside, lightning cracking through the sky.</p>
         
+
         <!-- Sixth Panel Row with One Panel -->
         <div class="panel-row row-2 hidden">
           <img class="panel revealing-image" src="Panel_9.png" alt="Chapter 1 Panel 9">
@@ -598,16 +786,24 @@
         <p class="hidden">Norman notices the crow with something in its beak.<br> Intrigued, he steps closer to get a better look.<br> It's a letter.</p>
 
          <!-- Nineth Panel Row with One Panel -->
-         <div class="panel-row row-1 hidden">
+         <div class="panel-row row-1 hidden shock-effect">
+          <div class="shock-animation" id="shock_panel">
             <img class="panel revealing-image" src="Panel_15.png" alt="Chapter 1 Panel 15">
+            <div class="shock-ripple"></div> <!-- ripple visual -->
+            <div class="shock-exclamations">
+            <img src="exclamation-image.png" alt="Shock Exclamation" class="shock-img">
+            </div> <!-- Exclamation marks effect -->
           </div>
+        </div>
+        
 
           <p class="hidden">Norman’s eyes widen as he reads the letter, stunned by the revelation that his father is alive.<p></p>
 
           <!-- Have to add the letter thing -->
+    </div>
+  </section>
+</div>
 
-    </section>
-  </div>
 
   <!-- CHAPTER 2 -->
   <div id="chapter2">
@@ -1005,6 +1201,92 @@
         }
     });
 
+    // Rain overlay for panel 1
+    document.addEventListener('DOMContentLoaded', () => {
+    const panel1 = document.getElementById('panel_1'); // Panel 1 image
+    const rainOverlay = document.querySelector('.rain-overlay'); // Rain overlay element
+
+    // Function to trigger the rain animation
+    function triggerRainEffect() {
+        rainOverlay.classList.add('rain-animation');  // Add class to show the rain effect
+    }
+
+    // Scroll event to check if the panel is in view
+    window.addEventListener('scroll', () => {
+        const rect = panel1.getBoundingClientRect(); // Use panel_1 to check if it's in view
+        const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+        if (inView) {
+            triggerRainEffect();  // Trigger rain animation when panel is in view
+        }
+    });
+});
+
+
+
+   // Thunder shake for panel 8
+   document.addEventListener('DOMContentLoaded', () => {
+    const panel8 = document.getElementById('panel-8');
+    const thunderSound = document.getElementById('thunderSound');
+    
+    let hasPlayedThunder = false;  // Flag to ensure sound plays only once
+
+    // Function to trigger the thunder shake effect
+    function triggerThunderShake() {
+        let shakeCount = 0;
+        const totalShakes = 3;
+
+        // Prevent shake if it's already happening
+        if (panel8.classList.contains('thunder-effect')) return;
+
+        let shakeInterval = setInterval(() => {
+            panel8.classList.add('thunder-effect');
+
+            // Play thunder sound only the first time
+            if (!hasPlayedThunder) {
+                thunderSound.play();
+                hasPlayedThunder = true;  // Mark the sound as played
+            }
+
+            // Remove the shake effect after 1.5 seconds
+            setTimeout(() => {
+                panel8.classList.remove('thunder-effect');
+            }, 1500);
+
+            shakeCount++;
+            if (shakeCount >= totalShakes) {
+                clearInterval(shakeInterval);  // Stop shaking after total shakes
+            }
+        }, 1800);  // Shake every 1.8 seconds
+    }
+
+    // Scroll event to check if the panel is in view
+    window.addEventListener('scroll', () => {
+        const rect = panel8.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+        if (inView) {
+            triggerThunderShake();  // Trigger shake if the panel is in view
+        }
+    });
+});
+
+// Shock animation for panel 15
+  const shockImg = document.getElementById('shock_panel');
+
+  const shockObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !shockImg.classList.contains('shocked')) {
+        shockImg.classList.add('shocked');
+      }
+    });
+  }, { threshold: 0.5 });
+
+  shockObserver.observe(shockImg);
+
+
+
+
 
     // Compass Interactivity
     const rotationInput = document.getElementById("compass-rotation");
@@ -1027,6 +1309,9 @@
     });
 
     </script>
+
+<audio id="thunderSound" src="thunder.mp3" preload="auto"></audio>
+
 
 </body>
 </html>
