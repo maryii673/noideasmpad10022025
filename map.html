@@ -680,41 +680,53 @@
 
       /* Styling for the clock-wrapper */
 
+        .challenge-heading {
+        font-size: 2rem;
+        color: #4d9ed8;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-align: center;
+      }
+
       #compass-container {
         margin-top: 100px;
-        }
+        text-align: center;
+      }
 
       #compass-wrapper {
         position: relative;
         width: 300px;
         height: 300px;
-        margin: 0 auto;
-        margin-top: 60px;
-        }
+        margin: 60px auto 0;
+      }
 
-        #compass {
+      #compass-img {
         width: 100%;
-        height: auto;
-        display: block;
+        height: 100%;
+        object-fit: contain;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) rotate(0deg);
-        transform-origin: 50% 50%; /* Rotate around center */
+        transform-origin: 50% 50%;
         transition: transform 0.3s ease;
-        }
+      }
 
-        #compass-rotation {
+      #compass-rotation {
         width: 100%;
-        margin-top: 30px;
-        }
+        max-width: 400px;
+        margin: 30px auto 0;
+        display: block;
+      }
 
-        #compass-text {
+      #compass-text {
         margin-top: 25px;
         font-style: italic;
         color: #ccc;
         text-align: center;
-        }
+      }
 
         footer {
         background-color: #1a1a1a;;
@@ -800,21 +812,28 @@
 
         <!-- Interactivity trigger -->
         <section id="compass-container">
-            <div>
-              <label for="compass-rotation">Spin the Compass To Help Norman Remember His Past!</label>
-              <p id="compass-text">Drag to Rotate the Compass ( <output id="compass-value">0</output> degrees)</p>
+          <div>
+            <h2 class="challenge-heading">Challenge #1</h2>
+            
+            <label for="compass-rotation" class="compass-label">
+              <span class="challenge-text">Spin the Compass</span> to Help Norman Remember His Past!
+            </label>
+        
+            <p id="compass-text">
+              Drag to Rotate the Compass (<output id="compass-value">0</output> degrees)
+            </p>
+          </div>
+        
+          <!-- Compass layout -->
+          <div id="compass-wrapper">
+            <div id="compass">
+              <img id="compass-img" src="compass-icon.png" alt="Compass">
             </div>
-          
-            <!-- Compass layout -->
-            <div id="compass-wrapper">
-              <div id="compass">
-              <img id="compass" src="compass-icon.png" alt="Compass">
-              </div>
-            </div>
-          
-            <!-- Range input to control the compass needle rotation -->
-            <input type="range" id="compass-rotation" min="0" max="360" value="0" step="1">
-          </section>
+          </div>
+        
+          <!-- Range input to control the compass needle rotation -->
+          <input type="range" id="compass-rotation" min="0" max="360" value="0" step="1">
+        </section>
           
         
         <!-- Third Panel Row with Three Panels -->
@@ -1410,15 +1429,16 @@
 
 
     // Compass Interactivity
-    const rotationInput = document.getElementById("compass-rotation");
-    const compass = document.getElementById("compass");
-    const compassValue = document.getElementById("compass-value");
+  const compass = document.getElementById('compass-img');
+  const compassRotation = document.getElementById('compass-rotation');
+  const compassValue = document.getElementById('compass-value');
 
-    rotationInput.addEventListener("input", function () {
-        const degrees = this.value;
-        compass.style.transform = `translate(-50%, -50%) rotate(${degrees}deg)`;
-        compassValue.textContent = degrees;
-    });
+  compassRotation.addEventListener('input', () => {
+    const degrees = compassRotation.value;
+    compass.style.transform = `translate(-50%, -50%) rotate(${degrees}deg)`;
+    compassValue.textContent = degrees;
+  });
+
 
     // Compass rotating linked to flashback panels
 
