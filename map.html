@@ -526,11 +526,6 @@
           position: relative;
       }
 
-      .panel {
-          width: 100%; /* Adjust as needed */
-          height: auto; /* Adjust as needed */
-      }
-
 
       /* Shock Animation for Panel 15 */
         .shock-animation {
@@ -1378,47 +1373,57 @@
         // --- Thunder Shake for Panel 8 ---
         const panel8 = document.getElementById('panel-8');
         const thunderSound = document.getElementById('thunderSound');
-        let hasPlayedThunder = false;  // Track if thunder has already played
+        let hasPlayedThunder = false;
+      
+        window.addEventListener('scroll', () => {
+          if (panel8 && thunderSound && !hasPlayedThunder) {
+            const rect = panel8.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      
+            if (inView) {
+              triggerThunderShake();
+              hasPlayedThunder = true;
+            }
+          }
+        });
+      
+        function triggerThunderShake() {
+          let shakeCount = 0;
+          const totalShakes = 3;
+      
+          if (panel8.classList.contains('thunder-effect')) return;
+      
+          const shakeInterval = setInterval(() => {
+            panel8.classList.add('thunder-effect');
+            thunderSound.play();
+      
+            setTimeout(() => {
+              panel8.classList.remove('thunder-effect');
+            }, 1500);
+      
+            shakeCount++;
+            if (shakeCount >= totalShakes) {
+              clearInterval(shakeInterval);
+            }
+          }, 1500);
+        }
 
-        // Function to check if the element is in the viewport
+        // Function to check if the panel is in the viewport
         function isElementInView(el) {
             const rect = el.getBoundingClientRect();
-            return rect.top < window.innerHeight && rect.bottom > 0;
+            return (
+                rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
         }
 
-        window.addEventListener('scroll', () => {
-            if (panel8 && thunderSound && !hasPlayedThunder) {
-                // If panel 8 is in view and thunder hasn't been played yet
-                if (isElementInView(panel8)) {
-                    triggerThunderShake();
-                    hasPlayedThunder = true;  // Make sure the thunder only plays once
-                }
-            }
-        });
-
-        // Function to trigger the thunder shake effect
-        function triggerThunderShake() {
-            let shakeCount = 0;
-            const totalShakes = 3;
-
-            if (panel8.classList.contains('thunder-effect')) return;  // Prevent additional shakes if already shaking
-
-            const shakeInterval = setInterval(() => {
-                panel8.classList.add('thunder-effect');  // Add the shake effect
-                thunderSound.play();  // Play the thunder sound
-
-                setTimeout(() => {
-                    panel8.classList.remove('thunder-effect');  // Remove the shake effect after the timeout
-                }, 500); // Shake duration, 500ms
-
-                shakeCount++;
-                if (shakeCount >= totalShakes) {
-                    clearInterval(shakeInterval);  // Stop shaking after the total shakes
-                }
-            }, 1000);  // Interval between each shake (1 second)
+        // Function to reveal the panel and trigger flicker animation
+        function isElementInView(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
         }
 
-    
         // Flicker Animation for Panel 9
         function revealPanelOnScroll() {
             const panel = document.getElementById('panel_9'); // Target the specific panel by ID
