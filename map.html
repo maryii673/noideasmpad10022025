@@ -777,151 +777,162 @@
 
 
     <!-- Chapter Sections -->
-     <!-- CHAPTER 1 -->
+   <!-- CHAPTER 1 -->
 <div id="chapter1">
-    <h2 class="chapter-title hidden">CHAPTER 1: The House</h2>
-    <section class="chapter-section">
+  <h2 class="chapter-title hidden">CHAPTER 1: The House</h2>
+  <section class="chapter-section">
       <div class="chapter-content">
-        <p class="hidden">A small, run-down house stands alone in the middle of the forest. The roof is broken, the walls are warped, and vines creep up the sides. A single window glows faintly in the dark.</p>
-        
-        <!-- First Panel Row with One Panel -->
-        <div class="panel-row row-1 hidden">
-          <img id="panel_1" class="panel revealing-image" src="Panel_1.png" alt="Chapter 1 Panel 1">
-          <div class="rain-overlay">
-             <!-- These divs simulate raindrops -->
-            <div class="raindrop"></div>
-            <div class="raindrop"></div>
-            <div class="raindrop"></div>
-            <div class="raindrop"></div>
-            <div class="raindrop"></div>
-            <!-- Add as many raindrop divs as needed -->
-          </div>  
-        </div>
+          <p class="hidden">"I should’ve left this place a long time ago, but I can’t bring myself to."</p>
+          <p class="hidden"><br><em>(He pauses, staring at the words on the screen, then quickly highlights and deletes them, frustrated.)</em></p>
+          <p class="hidden"><br>"No, that’s not it..."</p>
+          <p class="hidden"><br><em>(He taps his fingers on the keyboard, sighs deeply, and starts again.)</em></p>
 
-        <p class="hidden">Norman struggles to write, his cursor hovering over a blank page.<br> His frustration is obvious. He feels stuck. </p>
-        
-        <!-- Second Panel Row with Two Panels -->
-        <div class="panel-row row-2 hidden">
-          <img class="panel revealing-image" src="Panel_2.png" alt="Chapter 1 Panel 2">
-          <img class="panel revealing-image" src="Panel_3.png" alt="Chapter 1 Panel 3">
-    </div>
-
-       
-        
-        <p class="hidden">Tears fall from Norman's overwhelmed eyes as he struggles to find inspiration.<br> He thinks of his dad. </p>
-
-        <!-- Interactivity trigger -->
-        <section id="compass-container">
-          <div>
-            <h2 class="challenge-heading">Challenge #1</h2>
-            
-            <label for="compass-rotation" class="compass-label">
-              <span class="challenge-text">Spin the Compass</span> to Help Norman Remember His Past!
-            </label>
-        
-            <p id="compass-text">
-              Drag to Rotate the Compass (<output id="compass-value">0</output> degrees)
-            </p>
+          <!-- First Panel Row with One Panel -->
+          <div class="panel-row row-1 hidden">
+              <img id="panel_1" class="panel revealing-image" src="Panel_1.png" alt="Chapter 1 Panel 1">
+              <div class="rain-overlay">
+                  <!-- These divs simulate raindrops -->
+                  <div class="raindrop"></div>
+                  <div class="raindrop"></div>
+                  <div class="raindrop"></div>
+                  <div class="raindrop"></div>
+                  <div class="raindrop"></div>
+                  <!-- Add as many raindrop divs as needed -->
+              </div>  
           </div>
-        
-          <!-- Compass layout -->
-          <div id="compass-wrapper">
-            <div id="compass">
-              <img id="compass-img" src="compass-icon.png" alt="Compass">
-            </div>
+
+          <p class="hidden"><br>"The truth is... I’ve been stuck here. In this house. Alone."</p>
+          <p class="hidden"><br><em>(He deletes that, too, frustrated, muttering under his breath.)</em></p>
+          <p class="hidden"><br>"The silence is overwhelming. The storms rage outside, thunder shaking the walls, rain leaking through the roof, but I still stay. Why do I stay?"</p>
+          <p class="hidden"><br><em>(He puts his hands over his face, deletes everything, and sighs.)</em></p>
+          <p class="hidden"><br>"The house hasn’t changed much. The roof still leaks, the walls are warped, and vines have swallowed the outside. But it’s home... or whatever’s left of it. Some days, I wonder if it’ll collapse before I do."</p>
+          <p class="hidden"><br><em>(He reads it over, hesitates and deletes everything at once.)</em></p>
+
+          <!-- Second Panel Row with Two Panels -->
+          <div class="panel-row row-2 hidden">
+              <img class="panel revealing-image" src="Panel_2.png" alt="Chapter 1 Panel 2">
+              <img class="panel revealing-image" src="Panel_3.png" alt="Chapter 1 Panel 3">
           </div>
-        
-          <!-- Range input to control the compass needle rotation -->
-          <input type="range" id="compass-rotation" min="0" max="360" value="0" step="1">
-        </section>
+
+          <p class="hidden"><br>"I stare at the blank screen, trying to make sense of it all. But nothing comes to mind."</p>
+          <p class="hidden"><br>"My fingers hover over the keys, and all I can think of is <em>Him."</em></p>
+
+          <!-- Interactivity trigger -->
+          <section id="compass-container">
+              <div>
+                  <h2 class="challenge-heading">Challenge #1</h2>
+                  <label for="compass-rotation" class="compass-label">
+                      <span class="challenge-text">Spin the Compass</span> to Help Norman Remember His Past!
+                  </label>
           
-        
-        <!-- Third Panel Row with Three Panels -->
-        <div id="flashback-panels" class="panel-row row-3">
-        <img class="panel flashback-panels" src="Panel_4.png" alt="Chapter 1 Panel 4">
-        <img class="panel flashback-panels" src="Panel_5.png" alt="Chapter 1 Panel 5">
-        <img class="panel flashback-panels" src="Panel_6.png" alt="Chapter 1 Panel 6">
-    </div>
+                  <p id="compass-text">
+                      Drag to Rotate the Compass (<output id="compass-value">0</output> degrees)
+                  </p>
+              </div>
+          
+              <!-- Compass layout -->
+              <div id="compass-wrapper">
+                  <div id="compass">
+                      <img id="compass-img" src="compass-icon.png" alt="Compass">
+                  </div>
+              </div>
+          
+              <!-- Range input to control the compass needle rotation -->
+              <input type="range" id="compass-rotation" min="0" max="360" value="0" step="1">
+          </section>
 
-        <p class="hidden"><em>A flashback to Norman and his mom standing at his dad's grave, the sorrow heavy in the air.</em></p>
-        <p class="hidden"><em>Norman recalls crying to his mom about his father's death, her silent comfort in return.</em><p>
-        <p class="hidden"><em>Norman's mom hands him a book that belonged to his father, offering it silently.</em></p>
-
-           <!-- Fourth Panel Row with One Panel -->
-           <div class="panel-row row-1 hidden">
-            <img class="panel revealing-image" src="Panel_7.png" alt="Chapter 1 Panel 7">
+          <!-- Third Panel Row with Three Panels -->
+          <div id="flashback-panels" class="panel-row row-3">
+              <img class="panel flashback-panels" src="Panel_4.png" alt="Chapter 1 Panel 4">
+              <img class="panel flashback-panels" src="Panel_5.png" alt="Chapter 1 Panel 5">
+              <img class="panel flashback-panels" src="Panel_6.png" alt="Chapter 1 Panel 6">
           </div>
-  
-          <p class="hidden">He snaps back to his reality.<br> Norman takes a deep breath and walks toward the book his mom gave him.</p>
-        
-        <!-- Fifth Panel Row with Two Panels -->
-        <div class="panel-row row-1 hidden">
-          <img id="panel-8" class="panel revealing-image" src="Panel_8.png" alt="Chapter 1 Panel 8">
-          <audio id="thunderSound" src="thunder.mp3" preload="auto"></audio>
-        </div>
-        
-        <p class="hidden">Meanwhile, a storm starts to rage outside, lightning cracking through the sky.</p>
-        
 
-        <!-- Sixth Panel Row with One Panel -->
-        <div class="panel-row row-2 hidden">
-          <img class="panel revealing-image" src="Panel_9.png" alt="Chapter 1 Panel 9">
-          <img class="panel revealing-image" src="Panel_10.png" alt="Chapter 1 Panel 10">
-        </div>
+          <p class="hidden"><br><em>I remember my mother, standing at my dad's grave with her.<br><br> I remember how she didn’t say a word. She didn’t need to. Her silence spoke louder than any answer could.</em></p>
+          <p class="hidden"><br><em>I remember the way her hand trembled as she handed me my father's book.</em></p>
+          <p class="hidden"><br><em>Maybe, it was her way of telling me everything she couldn’t. But how could I have known?</em></p>
+          <p class="hidden"><br><em>I didn’t understand it then.<br><br>And, I still don't now.</em></p>
 
-        <p class="hidden">The lights flicker and go out, leaving Norman in total darkness.<br> Norman walks down the stairs, his footsteps echoing. </p>
-
-        <!-- Seventh Panel Row with Three Panels -->
-        <div class="panel-row row-2 hidden">
-            <img class="panel revealing-image" src="Panel_11.png" alt="Chapter 1 Panel 11">
-          <img class="panel revealing-image" src="Panel_12.png" alt="Chapter 1 Panel 12">
-        </div>
-
-        <p class="hidden">Norman checks the fuse box, his unease growing. Norman freezes.<br> His eyes widen as he sees a crow perched on the nearby window.<p>
-
-        <!-- Eigth Panel Row with Three Panels -->
-        <div class="panel-row row-2 hidden">
-          <img class="panel revealing-image" src="Panel_13.png" alt="Chapter 1 Panel 13">
-          <img class="panel revealing-image" src="Panel_14.png" alt="Chapter 1 Panel 14">
-        </div>
-
-        <p class="hidden">Norman notices the crow with something in its beak.<br> Intrigued, he steps closer to get a better look.<br> It's a letter.</p>
-
-      <!-- Section containing the button and letter -->
-      <section id="letterSection">
-        <!-- Button to Open the Letter -->
-        <button id="openLetterButton">Read Letter</button>
-
-        <!-- The Letter Container -->
-        <div id="letterContainer" class="is-hidden">
-          <div class="letter">
-            <p><strong>Dear Norman,</strong></p>
-            <p>There’s only so much I can say right now.<br> I know the past few years have been incredibly tough on you, but it’s time to move forward.<br> The answers will come in time. You’ll understand soon enough.<br>With love,<br> Dad.</p>
-            <!-- Button to Close the Letter -->
-            <button id="closeLetterButton">Close Letter</button>
+          <!-- Fourth Panel Row with One Panel -->
+          <div class="panel-row row-1 hidden">
+              <img class="panel revealing-image" src="Panel_7.png" alt="Chapter 1 Panel 7">
           </div>
-        </div>
-      </section>
 
-         <!-- Nineth Panel Row with One Panel -->
-         <div class="panel-row row-1 hidden shock-effect">
-          <div class="shock-animation" id="shock_panel">
-            <img class="panel revealing-image" src="Panel_15.png" alt="Chapter 1 Panel 15">
-            <div class="shock-ripple"></div> <!-- ripple visual -->
-            <div class="shock-exclamations">
-            <img src="exclamation-image.png" alt="Shock Exclamation" class="shock-img">
-            </div> <!-- Exclamation marks effect -->
+          <p class="hidden"><br><em>(Norman snaps back to reality, the weight of the past still lingering in the back of his mind.)</em></p>
+          <p class="hidden"><br>"I take a deep breath, trying to shake off the memories, and glance around the room."</p>
+          <p class="hidden"><br>"There it is—the book my mom handed me all those years ago."</p>
+          <p class="hidden"><br>"It’s been sitting there, <em>untouched."</em></p>
+
+          <!-- Fifth Panel Row with Two Panels -->
+          <div class="panel-row row-1 hidden">
+              <img id="panel-8" class="panel revealing-image" src="Panel_8.png" alt="Chapter 1 Panel 8">
+              <audio id="thunderSound" src="thunder.mp3" preload="auto"></audio>
           </div>
-        </div>
-        
+
+          <p class="hidden"><br><em>(Meanwhile, a storm starts to rage outside, lightning cracking through the sky.)</em></p>
+
+          <!-- Sixth Panel Row with One Panel -->
+          <div class="panel-row row-2 hidden">
+              <img class="panel revealing-image" src="Panel_9.png" alt="Chapter 1 Panel 9">
+              <img class="panel revealing-image" src="Panel_10.png" alt="Chapter 1 Panel 10">
+          </div>
+
+          <p class="hidden"><br>"The lights flicker, then just like that, everything goes dark."</p>
+          <p class="hidden"><br>"I take a deep breath, the silence heavier now."</p>
+          <p class="hidden"><br>"I fumble around until I find a candle. I light it, the dim flame flickers as I make my way down the stairs."</p>
+          <p class="hidden"><br>"My footsteps echo as I make my way down the stairs, each step more unsettling than the last."</p>
+
+          <!-- Seventh Panel Row with Three Panels -->
+          <div class="panel-row row-2 hidden">
+              <img class="panel revealing-image" src="Panel_11.png" alt="Chapter 1 Panel 11">
+              <img class="panel revealing-image" src="Panel_12.png" alt="Chapter 1 Panel 12">
+          </div>
+
+          <p class="hidden"><br>"When I reach the fuse box, my fingers brushing against the cold metal.<br><br> My unease grows with each passing second."</p>
+          <p class="hidden"><br>"I flip the switch, but the darkness remains. A chill runs down my spine."</p>
+          <p class="hidden"><br>"Then I freeze."</p>
+          <p class="hidden"><br>"There, just outside the window, a crow. It flaps its wings and lands on the nearby sill.<br><br>"I can’t look away."</p>
+
+          <!-- Eighth Panel Row with Three Panels -->
+          <div class="panel-row row-2 hidden">
+              <img class="panel revealing-image" src="Panel_13.png" alt="Chapter 1 Panel 13">
+              <img class="panel revealing-image" src="Panel_14.png" alt="Chapter 1 Panel 14">
+          </div>
+
+          <p class="hidden">Norman notices the crow with something in its beak.<br> Intrigued, he steps closer to get a better look.<br> It's a letter.</p>
+
+          <!-- Section containing the button and letter -->
+          <section id="letterSection">
+              <!-- Button to Open the Letter -->
+              <button id="openLetterButton">Read Letter</button>
+
+              <!-- The Letter Container -->
+              <div id="letterContainer" class="is-hidden">
+                  <div class="letter">
+                      <p><strong>Dear Norman,</strong></p>
+                      <p>There’s only so much I can say right now.<br> I know the past few years have been incredibly tough on you, but it’s time to move forward.<br> The answers will come in time. You’ll understand soon enough.<br>With love,<br> Dad.</p>
+                      <!-- Button to Close the Letter -->
+                      <button id="closeLetterButton">Close Letter</button>
+                  </div>
+              </div>
+          </section>
+
+          <!-- Nineth Panel Row with One Panel -->
+          <div class="panel-row row-1 hidden shock-effect">
+              <div class="shock-animation" id="shock_panel">
+                  <img class="panel revealing-image" src="Panel_15.png" alt="Chapter 1 Panel 15">
+                  <div class="shock-ripple"></div> <!-- ripple visual -->
+                  <div class="shock-exclamations">
+                      <img src="exclamation-image.png" alt="Shock Exclamation" class="shock-img">
+                  </div> <!-- Exclamation marks effect -->
+              </div>
+          </div>
 
           <p class="hidden">Norman’s eyes widen as he reads the letter, stunned by the revelation that his father is alive.</p>
 
-
-    </div>
+      </div>
   </section>
 </div>
-
 
   <!-- CHAPTER 2 -->
   <div id="chapter2">
@@ -1187,269 +1198,236 @@
     </footer>
 
     
-   
- <script>
-
-    // Reveal sections when they come into view and also on page load
-    const sections = document.querySelectorAll('.chapter-section');
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
-
-    // Function to reveal sections
-    function revealSections() {
-        sections.forEach(section => {
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- Scroll to Chapter from URL ---
+        function getQueryParam(param) {
+          const urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get(param);
+        }
+      
+        const chapterId = getQueryParam('chapter');
+        if (chapterId) {
+          const target = document.getElementById(chapterId);
+          if (target) {
+            setTimeout(() => {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }, 200);
+          }
+        }
+      
+        // --- Show all .hidden in chapter1 ---
+        const chapter1 = document.querySelector("#chapter1");
+        if (chapter1) {
+          const hiddenElements = chapter1.querySelectorAll(".hidden");
+          hiddenElements.forEach(el => el.classList.remove("hidden"));
+        }
+      
+        // --- Rain Animation on Panel 1 ---
+        const panel1 = document.getElementById('panel_1');
+        const rainOverlay = document.querySelector('.rain-overlay');
+      
+        function triggerRainEffect() {
+          rainOverlay.classList.add('rain-animation');
+        }
+      
+        window.addEventListener('scroll', () => {
+          if (panel1) {
+            const rect = panel1.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+            if (inView) {
+              triggerRainEffect();
+            }
+          }
+      
+          // Scroll-to-top button
+          const scrollTopBtn = document.getElementById('scrollTopBtn');
+          if (scrollTopBtn) {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+              scrollTopBtn.style.display = 'block';
+            } else {
+              scrollTopBtn.style.display = 'none';
+            }
+          }
+      
+          // Section reveals on scroll
+          revealSections();
+        });
+      
+        // --- Reveal Sections ---
+        const sections = document.querySelectorAll('.chapter-section');
+      
+        function revealSections() {
+          sections.forEach(section => {
             const rect = section.getBoundingClientRect();
             if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-                section.classList.add('visible');
-                const image = section.querySelector('.revealing-image');
-                image && image.classList.add('visible');
+              section.classList.add('visible');
+              const image = section.querySelector('.revealing-image');
+              if (image) image.classList.add('visible');
             }
-        });
-    }
-
-    // Run the function immediately when the page loads
-    revealSections();
-
-    // Add scroll event listener to reveal sections as the user scrolls
-    window.addEventListener('scroll', () => {
-        revealSections(); // Re-check sections visibility on scroll
-
-        // Show or hide the Scroll-to-Top button based on scroll position
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-            scrollTopBtn.style.display = 'block';
-        } else {
-            scrollTopBtn.style.display = 'none';
+          });
         }
-    });
-
-    // Fullscreen Toggle Function
-    function toggleFullscreen() {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen().catch(err => {
-                console.log(`Error attempting to enable full-screen mode: ${err.message}`);
-            });
-        } else {
-            document.exitFullscreen();
+      
+        revealSections();
+      
+        // --- Scroll to top button click ---
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        if (scrollTopBtn) {
+          scrollTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
         }
-    }
-
-    // Auto Scroll Function
-    let scrolling;
-    function autoScroll() {
-        if (scrolling) {
-            clearInterval(scrolling);
-            scrolling = null;
-        } else {
-            scrolling = setInterval(() => {
-                window.scrollBy(0, 2); // Adjust speed here
-            }, 50);
+      
+        // --- Toggle Sidebar ---
+        function toggleSidebar() {
+          const sidebar = document.querySelector('.sidebar');
+          if (sidebar) {
+            sidebar.style.width = (sidebar.style.width === '0px' || sidebar.style.width === '') ? '200px' : '0';
+          }
         }
-    }
-
-    // Scroll to top functionality
-    scrollTopBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-
-    // Scroll to specific chapter
-    function scrollToChapter(chapterId) {
-    const element = document.getElementById(chapterId);
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    }
-
-
-    // Toggle sidebar visibility
-    function toggleSidebar() {
-        const sidebar = document.querySelector('.sidebar');
-        if (sidebar.style.width === '0px' || sidebar.style.width === '') {
-            sidebar.style.width = '200px'; // Set to desired width
-        } else {
-            sidebar.style.width = '0'; // Hide the sidebar
-        }
-    }
-
-    // Initialize the Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const target = entry.target;
-            target.classList.add('visible');
-
-            // Reveal images after chapter content
-            if (target.classList.contains('chapter-content')) {
-            const images = target.querySelectorAll('.revealing-image');
-            images.forEach((img, i) => {
-                setTimeout(() => {
-                img.classList.add('visible');
-                }, 1000 + i * 300); // stagger if there are multiple
-            });
+      
+        // --- Intersection Observer for Titles and Chapter Content ---
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const target = entry.target;
+              target.classList.add('visible');
+      
+              if (target.classList.contains('chapter-content')) {
+                const images = target.querySelectorAll('.revealing-image');
+                images.forEach((img, i) => {
+                  setTimeout(() => img.classList.add('visible'), 1000 + i * 300);
+                });
+              }
             }
-        }
+          });
+        }, { threshold: 0.2 });
+      
+        document.querySelectorAll('.chapter-title, .chapter-content').forEach(el => {
+          observer.observe(el);
         });
-    }, { threshold: 0.2 });
-
-    document.querySelectorAll('.chapter-title, .chapter-content').forEach(el => {
-        observer.observe(el);
-    });
-
-
-
-    // Function to get the query string value
-    function getQueryParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
-
-    // Scroll to the chapter on page load
-    window.addEventListener('DOMContentLoaded', () => {
-        const chapterId = getQueryParam('chapter'); // e.g., 'chapter1', 'chapter2', etc.
-        if (chapterId) {
-        const target = document.getElementById(chapterId);
-        if (target) {
-            // Delay to allow layout to finish rendering
-            setTimeout(() => {
-            target.scrollIntoView({ behavior: 'smooth' });
-            }, 200); // You can adjust the delay if needed
-        }
-        }
-    });
-
-    // Rain overlay for panel 1
-    document.addEventListener('DOMContentLoaded', () => {
-    const panel1 = document.getElementById('panel_1'); // Panel 1 image
-    const rainOverlay = document.querySelector('.rain-overlay'); // Rain overlay element
-
-    // Function to trigger the rain animation
-    function triggerRainEffect() {
-        rainOverlay.classList.add('rain-animation');  // Add class to show the rain effect
-    }
-
-    // Scroll event to check if the panel is in view
-    window.addEventListener('scroll', () => {
-        const rect = panel1.getBoundingClientRect(); // Use panel_1 to check if it's in view
-        const inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-        if (inView) {
-            triggerRainEffect();  // Trigger rain animation when panel is in view
-        }
-    });
-});
-
-
-
-   // Thunder shake for panel 8
-   document.addEventListener('DOMContentLoaded', () => {
-    const panel8 = document.getElementById('panel-8');
-    const thunderSound = document.getElementById('thunderSound');
-    
-    let hasPlayedThunder = false;  // Flag to ensure sound plays only once when first scroll
-
-    // Function to trigger the thunder shake effect
-    function triggerThunderShake() {
-        let shakeCount = 0;
-        const totalShakes = 3;  // You can change this value to adjust the number of shakes
-
-        // Prevent shake if it's already happening
-        if (panel8.classList.contains('thunder-effect')) return;
-
-        let shakeInterval = setInterval(() => {
+      
+        // --- Thunder Shake for Panel 8 ---
+        const panel8 = document.getElementById('panel-8');
+        const thunderSound = document.getElementById('thunderSound');
+        let hasPlayedThunder = false;
+      
+        window.addEventListener('scroll', () => {
+          if (panel8 && thunderSound && !hasPlayedThunder) {
+            const rect = panel8.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      
+            if (inView) {
+              triggerThunderShake();
+              hasPlayedThunder = true;
+            }
+          }
+        });
+      
+        function triggerThunderShake() {
+          let shakeCount = 0;
+          const totalShakes = 3;
+      
+          if (panel8.classList.contains('thunder-effect')) return;
+      
+          const shakeInterval = setInterval(() => {
             panel8.classList.add('thunder-effect');
-
-            // Play thunder sound each time (repeat 3 times or any other number)
-            if (!hasPlayedThunder) {
-                thunderSound.play();
-                hasPlayedThunder = true;  // Mark the sound as played only on the first scroll
-            }
-
-            // Remove the shake effect after 1.5 seconds
+            thunderSound.play();
+      
             setTimeout(() => {
-                panel8.classList.remove('thunder-effect');
+              panel8.classList.remove('thunder-effect');
             }, 1500);
-
+      
             shakeCount++;
             if (shakeCount >= totalShakes) {
-                clearInterval(shakeInterval);  // Stop shaking after total shakes
+              clearInterval(shakeInterval);
             }
-        }, 1500);  // Shake every 1 second (adjustable for the desired timing)
-    }
-
-    // Scroll event to check if the panel is in view
-    window.addEventListener('scroll', () => {
-        const rect = panel8.getBoundingClientRect();
-        const inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-        // Trigger the thunder shake only the first time the panel enters view
-        if (inView && !hasPlayedThunder) {
-            triggerThunderShake();  // Trigger shake if the panel is in view
+          }, 1500);
         }
-    });
-});
+      
+        // --- Shock Effect for Panel 15 ---
+        const shockImg = document.getElementById('shock_panel');
+        if (shockImg) {
+          const shockObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting && !shockImg.classList.contains('shocked')) {
+                shockImg.classList.add('shocked');
+              }
+            });
+          }, { threshold: 0.5 });
+      
+          shockObserver.observe(shockImg);
+        }
+      
+        // --- Letter Button Interactions ---
+        const openLetterButton = document.getElementById('openLetterButton');
+        const closeLetterButton = document.getElementById('closeLetterButton');
+        const letterContainer = document.getElementById('letterContainer');
+      
+        if (openLetterButton && closeLetterButton && letterContainer) {
+          openLetterButton.addEventListener('click', () => {
+            letterContainer.classList.remove('is-hidden');
+          });
+      
+          closeLetterButton.addEventListener('click', () => {
+            letterContainer.classList.add('is-hidden');
+          });
+        }
+      
+        // --- Compass Rotation ---
+        const compass = document.getElementById('compass-img');
+        const compassRotation = document.getElementById('compass-rotation');
+        const compassValue = document.getElementById('compass-value');
+      
+        if (compass && compassRotation && compassValue) {
+          compassRotation.addEventListener('input', () => {
+            const degrees = compassRotation.value;
+            compass.style.transform = `translate(-50%, -50%) rotate(${degrees}deg)`;
+            compassValue.textContent = degrees;
+          });
+      
+          compassRotation.addEventListener('input', () => {
+            document.querySelectorAll('.flashback-panels').forEach(panel => {
+              panel.classList.add('visible');
+            });
+          });
+        }
+      });
+
+     // --- Unhide Chapter 1 content on page load ---
+      const chapter1 = document.querySelector("#chapter1");
+      if (chapter1) {
+        const hiddenElements = chapter1.querySelectorAll(".hidden");
+        hiddenElements.forEach(el => el.classList.remove("hidden"));
+      }
+
+      </script>
+
+
+
+
+
+
+
+
+
+
+  
+
+   
+
+
+
+
+
+
+
+  
+    // To Make sure page loads all content the first time
 
     
-// Shock animation for panel 15
-  const shockImg = document.getElementById('shock_panel');
-
-  const shockObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !shockImg.classList.contains('shocked')) {
-        shockImg.classList.add('shocked');
-      }
-    });
-  }, { threshold: 0.5 });
-
-  shockObserver.observe(shockImg);
-
-
-// Letter Button
-  document.addEventListener('DOMContentLoaded', function() {
-    // Get the elements
-    const openLetterButton = document.getElementById('openLetterButton');
-    const closeLetterButton = document.getElementById('closeLetterButton');
-    const letterContainer = document.getElementById('letterContainer');
-
-    // Add event listener to the "Read Letter" button
-    openLetterButton.addEventListener('click', function() {
-      // Show the letter when "Read Letter" is clicked
-      letterContainer.classList.remove('is-hidden');
-    });
-
-    // Add event listener to the "Close Letter" button
-    closeLetterButton.addEventListener('click', function() {
-      // Close the letter and hide it again
-      letterContainer.classList.add('is-hidden');
-    });
-  });
-
-
-
-
-    // Compass Interactivity
-  const compass = document.getElementById('compass-img');
-  const compassRotation = document.getElementById('compass-rotation');
-  const compassValue = document.getElementById('compass-value');
-
-  compassRotation.addEventListener('input', () => {
-    const degrees = compassRotation.value;
-    compass.style.transform = `translate(-50%, -50%) rotate(${degrees}deg)`;
-    compassValue.textContent = degrees;
-  });
-
-
-    // Compass rotating linked to flashback panels
-
-    document.getElementById('compass-rotation').addEventListener('input', function() {
-    // Add the 'visible' class to the flashback panels when the compass is rotated
-    document.querySelectorAll('.flashback-panels').forEach(function(panel) {
-        panel.classList.add('visible');
-    });
-    });
-
-    </script>
+    
 
 <audio id="thunderSound" src="thunder.mp3" preload="auto"></audio>
 
