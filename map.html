@@ -492,7 +492,7 @@
         animation: thunderShake 1.5s ease;
       }
 
-      /* Flickering animation for Panel 9 */
+      /* Flickering Animation for Panel 9 */
             @keyframes flickerEffect {
           0% {
               opacity: 1;
@@ -524,6 +524,49 @@
       /* Panel Row Styling */
       .panel-row {
           position: relative;
+      }
+
+     /* Flame Flicker Animation for Panel 10 */
+      @keyframes flameFlicker {
+          0% {
+              opacity: 1;
+              transform: scale(1);
+          }
+          25% {
+              opacity: 0.9;
+              transform: scale(1.02);
+          }
+          50% {
+              opacity: 0.8;
+              transform: scale(0.98);
+          }
+          75% {
+              opacity: 0.95;
+              transform: scale(1.01);
+          }
+          100% {
+              opacity: 1;
+              transform: scale(1);
+          }
+      }
+
+      /* Flame style */
+      .flame {
+          width: 100px;  /* Adjust size of the flame */
+          height: 100px; /* Adjust size of the flame */
+          position: absolute;
+          top: 44%; /* Adjust flame position inside panel */
+          left: 45%;
+          transform: translate(-50%, -50%); /* Center the flame */
+          animation: flameFlicker 1.5s infinite ease-in-out; /* Apply flicker animation */
+          z-index: 2;
+      }
+
+      /* Flame Image (Replace the URL with your flame PNG path) */
+      .flame img {
+          width: 400%;  /* Make the flame image fill the container */
+          height: 80%;
+          object-fit: contain;  /* Ensures the image fits proportionally within the container */
       }
 
 
@@ -901,8 +944,11 @@
           <!-- Sixth Panel Row with One Panel -->
           <div class="panel-row row-2 hidden">
               <img id="panel_9" class="panel revealing-image" src="Panel_9.png" alt="Chapter 1 Panel 9">
-              <img class="panel revealing-image" src="Panel_10.png" alt="Chapter 1 Panel 10">
-          </div>
+              <img id="panel_10" class="panel revealing-image" src="Panel_10.png" alt="Chapter 1 Panel 10">
+              <div class="flame">
+                <img src="flame-image.png" alt="Flame">  <!-- Replace 'flame-image.png' with your PNG path -->
+            </div>
+        </div>
 
           <p class="hidden"><br>"The lights flicker, then just like that, everything goes dark."</p>
           <p class="hidden"><br>"I take a deep breath, the silence heavier now."</p>
@@ -1449,10 +1495,35 @@
 
         // Optional: Call once on load to check if the panel is already in view (for users who may have landed on the page with the panel already visible)
         document.addEventListener('DOMContentLoaded', revealPanelOnScroll);
+        
+
+        // Flame Flicker Animation for Panel 10
+            const panel10 = document.getElementById('panel-10');
+            const flame = document.getElementById('flame');
+            let hasFlameFlickered = false;
+
+            function isElementInView(el) {
+                const rect = el.getBoundingClientRect();
+                return rect.top < window.innerHeight && rect.bottom > 0;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (panel10 && flame && !hasFlameFlickered) {
+                    // If panel 10 is in view and the flame hasn't been flickered yet
+                    if (isElementInView(panel10)) {
+                        triggerFlameFlicker();
+                        hasFlameFlickered = true; // Ensure flame flicker happens only once
+                    }
+                }
+            });
+
+        function triggerFlameFlicker() {
+            // You can add additional functionality here if you want to do something
+            // more when the flame starts flickering. But for now, it's just the animation.
+            flame.style.animationPlayState = 'running'; // Make sure the flicker animation starts
+        }
 
 
-  
-      
         // --- Shock Effect for Panel 15 ---
         const shockImg = document.getElementById('shock_panel');
         if (shockImg) {
