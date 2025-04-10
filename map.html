@@ -136,24 +136,42 @@
             background-color: #555;
         }
 
-      /* Hide sidebar */
-      .is-hidden {
-        display: none;
-      }
+        /* Hide sidebar */
+        .is-hidden {
+          display: none;
+        }
 
-      /* Hamburger Icon Styling */
-      .hamburger-icon {
-        position: fixed;
-        right: 20px;
-        top: 20px;
-        z-index: 1000;
-        cursor: pointer;
-      }
+        /* Hamburger Icon Styling */
+        .hamburger-icon {
+          position: fixed;
+          right: 20px;
+          top: 20px;
+          z-index: 1000;
+          cursor: pointer;
+        }
 
-      .hamburger-icon img {
-        width: 60px;
-        height: 60px;
-      }
+        .hamburger-icon img {
+          width: 60px;
+          height: 60px;
+        }
+
+        .hamburger-icon:hover img {
+            transform: scale(1.1); /* Slightly enlarge the image on hover */
+        }
+
+        /* Toggle Button */
+        .sidebar-toggle {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .sidebar-toggle img {
+            width: 60px;
+            height: 60px;
+        }
 
         /* Map Content Styling */
         #map-content {
@@ -1161,11 +1179,11 @@
         </a>
 
    <!-- Auto and Fullscreen Buttons -->
-<button class="auto-btn" onclick="autoScroll()">
+<button class="auto-btn" id="autoScrollButton" onclick="autoScroll()">
     <img src="auto-icon.png" alt="Auto Scroll" style="width: 70px; height: 70px;">
 </button>
 
-<button class="fullscreen-btn" onclick="toggleFullscreen()">
+<button class="fullscreen-btn" id="fullscreenButton" onclick="toggleFullscreen()">
     <img src="fullscreen-icon.png" alt="Fullscreen" style="width: 50px; height: 50px;">
 </button>
 
@@ -1238,8 +1256,38 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
           });
         }
+
+        // --- Fullscreen Toggle Function ---
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // --- Auto Scroll Function with Your Original Values ---
+        let scrolling;
+        function autoScroll() {
+            if (scrolling) {
+                clearInterval(scrolling);
+                scrolling = null;
+            } else {
+                scrolling = setInterval(() => {
+                    window.scrollBy(0, 2);  // Scrolls down by 2px every interval
+                }, 50);  // Adjusted time interval for smoother scrolling
+            }
+        }
+
+        // Add event listeners for the buttons (Optional, if you want to avoid inline event handlers)
+        document.getElementById('autoScrollButton').addEventListener('click', autoScroll);
+        document.getElementById('fullscreenButton').addEventListener('click', toggleFullscreen);
+
+
       
-        // --- Sidebar Open Close ---
+        // --- Sidebar Open/Close ---
         function toggleSidebar() {
         const sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('is-hidden');
