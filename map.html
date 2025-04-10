@@ -777,7 +777,7 @@
 
 
     <!-- Chapter Sections -->
-   <!-- CHAPTER 1 -->
+<!-- CHAPTER 1 -->
 <div id="chapter1">
   <h2 class="chapter-title hidden">CHAPTER 1: The House</h2>
   <section class="chapter-section">
@@ -806,7 +806,7 @@
           <p class="hidden"><br>"The silence is overwhelming. The storms rage outside, thunder shaking the walls, rain leaking through the roof, but I still stay. Why do I stay?"</p>
           <p class="hidden"><br><em>(He puts his hands over his face, deletes everything, and sighs.)</em></p>
           <p class="hidden"><br>"The house hasn’t changed much. The roof still leaks, the walls are warped, and vines have swallowed the outside. But it’s home... or whatever’s left of it. Some days, I wonder if it’ll collapse before I do."</p>
-          <p class="hidden"><br><em>(He reads it over, hesitates and deletes everything at once.)</em></p>
+          <p class="hidden"><br><em>(He reads it over, hesitates, and deletes everything at once.)</em></p>
 
           <!-- Second Panel Row with Two Panels -->
           <div class="panel-row row-2 hidden">
@@ -815,7 +815,7 @@
           </div>
 
           <p class="hidden"><br>"I stare at the blank screen, trying to make sense of it all. But nothing comes to mind."</p>
-          <p class="hidden"><br>"My fingers hover over the keys, and all I can think of is <em>Him."</em></p>
+          <p class="hidden"><br>"My fingers hover over the keys, and all I can think of is <em>Him.</em>"</p>
 
           <!-- Interactivity trigger -->
           <section id="compass-container">
@@ -861,7 +861,7 @@
           <p class="hidden"><br><em>(Norman snaps back to reality, the weight of the past still lingering in the back of his mind.)</em></p>
           <p class="hidden"><br>"I take a deep breath, trying to shake off the memories, and glance around the room."</p>
           <p class="hidden"><br>"There it is—the book my mom handed me all those years ago."</p>
-          <p class="hidden"><br>"It’s been sitting there, <em>untouched."</em></p>
+          <p class="hidden"><br>"It’s been sitting there, <em>untouched.</em>"</p>
 
           <!-- Fifth Panel Row with Two Panels -->
           <div class="panel-row row-1 hidden">
@@ -911,24 +911,9 @@
                   <div class="letter">
                       <p><strong>Dear Norman,</strong></p>
                       <p>There’s only so much I can say right now.<br> I know the past few years have been incredibly tough on you, but it’s time to move forward.<br> The answers will come in time. You’ll understand soon enough.<br>With love,<br> Dad.</p>
-                      <!-- Button to Close the Letter -->
-                      <button id="closeLetterButton">Close Letter</button>
                   </div>
               </div>
           </section>
-
-          <!-- Nineth Panel Row with One Panel -->
-          <div class="panel-row row-1 hidden shock-effect">
-              <div class="shock-animation" id="shock_panel">
-                  <img class="panel revealing-image" src="Panel_15.png" alt="Chapter 1 Panel 15">
-                  <div class="shock-ripple"></div> <!-- ripple visual -->
-                  <div class="shock-exclamations">
-                      <img src="exclamation-image.png" alt="Shock Exclamation" class="shock-img">
-                  </div> <!-- Exclamation marks effect -->
-              </div>
-          </div>
-
-          <p class="hidden">Norman’s eyes widen as he reads the letter, stunned by the revelation that his father is alive.</p>
 
       </div>
   </section>
@@ -1205,7 +1190,7 @@
           const urlParams = new URLSearchParams(window.location.search);
           return urlParams.get(param);
         }
-      
+    
         const chapterId = getQueryParam('chapter');
         if (chapterId) {
           const target = document.getElementById(chapterId);
@@ -1215,23 +1200,25 @@
             }, 200);
           }
         }
-      
-        // --- Show all .hidden in chapter1 ---
-        const chapter1 = document.querySelector("#chapter1");
+    
+        // --- Show all .hidden elements in chapter1 ---
+        const chapter1 = document.querySelector("#chapter1"); // Correcting selector
         if (chapter1) {
           const hiddenElements = chapter1.querySelectorAll(".hidden");
           hiddenElements.forEach(el => el.classList.remove("hidden"));
         }
-      
+    
         // --- Rain Animation on Panel 1 ---
         const panel1 = document.getElementById('panel_1');
         const rainOverlay = document.querySelector('.rain-overlay');
-      
+    
         function triggerRainEffect() {
           rainOverlay.classList.add('rain-animation');
         }
-      
+    
+        // --- Scroll Event Handler ---
         window.addEventListener('scroll', () => {
+          // Check if panel1 is in view for rain animation
           if (panel1) {
             const rect = panel1.getBoundingClientRect();
             const inView = rect.top < window.innerHeight && rect.bottom > 0;
@@ -1239,8 +1226,8 @@
               triggerRainEffect();
             }
           }
-      
-          // Scroll-to-top button
+    
+          // Scroll-to-top button visibility
           const scrollTopBtn = document.getElementById('scrollTopBtn');
           if (scrollTopBtn) {
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
@@ -1249,14 +1236,14 @@
               scrollTopBtn.style.display = 'none';
             }
           }
-      
+    
           // Section reveals on scroll
           revealSections();
         });
-      
-        // --- Reveal Sections ---
+    
+        // --- Reveal Sections on Scroll ---
         const sections = document.querySelectorAll('.chapter-section');
-      
+    
         function revealSections() {
           sections.forEach(section => {
             const rect = section.getBoundingClientRect();
@@ -1267,9 +1254,10 @@
             }
           });
         }
-      
+    
+        // Call once to reveal sections already in view
         revealSections();
-      
+    
         // --- Scroll to top button click ---
         const scrollTopBtn = document.getElementById('scrollTopBtn');
         if (scrollTopBtn) {
@@ -1278,7 +1266,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
           });
         }
-      
+    
         // --- Toggle Sidebar ---
         function toggleSidebar() {
           const sidebar = document.querySelector('.sidebar');
@@ -1286,14 +1274,14 @@
             sidebar.style.width = (sidebar.style.width === '0px' || sidebar.style.width === '') ? '200px' : '0';
           }
         }
-      
+    
         // --- Intersection Observer for Titles and Chapter Content ---
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               const target = entry.target;
               target.classList.add('visible');
-      
+    
               if (target.classList.contains('chapter-content')) {
                 const images = target.querySelectorAll('.revealing-image');
                 images.forEach((img, i) => {
@@ -1303,49 +1291,49 @@
             }
           });
         }, { threshold: 0.2 });
-      
+    
         document.querySelectorAll('.chapter-title, .chapter-content').forEach(el => {
           observer.observe(el);
         });
-      
+    
         // --- Thunder Shake for Panel 8 ---
         const panel8 = document.getElementById('panel-8');
         const thunderSound = document.getElementById('thunderSound');
         let hasPlayedThunder = false;
-      
+    
         window.addEventListener('scroll', () => {
           if (panel8 && thunderSound && !hasPlayedThunder) {
             const rect = panel8.getBoundingClientRect();
             const inView = rect.top < window.innerHeight && rect.bottom > 0;
-      
+    
             if (inView) {
               triggerThunderShake();
               hasPlayedThunder = true;
             }
           }
         });
-      
+    
         function triggerThunderShake() {
           let shakeCount = 0;
           const totalShakes = 3;
-      
+    
           if (panel8.classList.contains('thunder-effect')) return;
-      
+    
           const shakeInterval = setInterval(() => {
             panel8.classList.add('thunder-effect');
             thunderSound.play();
-      
+    
             setTimeout(() => {
               panel8.classList.remove('thunder-effect');
             }, 1500);
-      
+    
             shakeCount++;
             if (shakeCount >= totalShakes) {
               clearInterval(shakeInterval);
             }
           }, 1500);
         }
-      
+    
         // --- Shock Effect for Panel 15 ---
         const shockImg = document.getElementById('shock_panel');
         if (shockImg) {
@@ -1356,37 +1344,37 @@
               }
             });
           }, { threshold: 0.5 });
-      
+    
           shockObserver.observe(shockImg);
         }
-      
+    
         // --- Letter Button Interactions ---
         const openLetterButton = document.getElementById('openLetterButton');
         const closeLetterButton = document.getElementById('closeLetterButton');
         const letterContainer = document.getElementById('letterContainer');
-      
+    
         if (openLetterButton && closeLetterButton && letterContainer) {
           openLetterButton.addEventListener('click', () => {
             letterContainer.classList.remove('is-hidden');
           });
-      
+    
           closeLetterButton.addEventListener('click', () => {
             letterContainer.classList.add('is-hidden');
           });
         }
-      
+    
         // --- Compass Rotation ---
         const compass = document.getElementById('compass-img');
         const compassRotation = document.getElementById('compass-rotation');
         const compassValue = document.getElementById('compass-value');
-      
+    
         if (compass && compassRotation && compassValue) {
           compassRotation.addEventListener('input', () => {
             const degrees = compassRotation.value;
             compass.style.transform = `translate(-50%, -50%) rotate(${degrees}deg)`;
             compassValue.textContent = degrees;
           });
-      
+    
           compassRotation.addEventListener('input', () => {
             document.querySelectorAll('.flashback-panels').forEach(panel => {
               panel.classList.add('visible');
@@ -1394,16 +1382,8 @@
           });
         }
       });
-
-     // --- Unhide Chapter 1 content on page load ---
-      const chapter1 = document.querySelector("#chapter1");
-      if (chapter1) {
-        const hiddenElements = chapter1.querySelectorAll(".hidden");
-        hiddenElements.forEach(el => el.classList.remove("hidden"));
-      }
-
-      </script>
-
+    </script>
+    
 
 
 
