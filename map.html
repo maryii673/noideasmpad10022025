@@ -293,69 +293,49 @@
 
         /* IMAGE PANEL (fades in last) */
         .revealing-image {
-        width: 100%;
-        margin-top: 40px;
-        opacity: 0;
-        transition: opacity 2s ease 2s, transform 2s ease 2s; /* fade + slide + delay */
-        }
-
-        .revealing-image.visible {
-        opacity: 1;
+            width: 100%;
+            margin-top: 40px;
+            opacity: 0;
+            transition: opacity 2s ease 2s, transform 2s ease 2s; /* fade + slide + delay */
         }
 
         /* Chapter Wrapper */
         .chapter-wrapper {
-        margin: 100px auto;
-        padding: 80px 40px;
-        background-color: #333;
-        border-radius: 20px;
-        width: 85%;
-        max-width: 1200px;
-        opacity: 0;
-        transform: translateY(30px); /* Start with an off-screen effect */
-        transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* Animation on scroll */
+            margin: 100px auto;
+            padding: 80px 40px;
+            background-color: #333;
+            border-radius: 20px;
+            width: 85%;
+            max-width: 1200px;
+            opacity: 0;
+            transform: translateY(30px); /* Start with an off-screen effect */
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* Animation on scroll */
         }
 
         /* Chapter Title */
         .chapter-title {
-        font-size: 2.5em;
-        font-weight: 800;
-        margin-top: 200px;
-        margin-bottom: 30px;
-        color: white;
-        text-align: center;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        opacity: 0;
-        transform: translateY(30px); /* Start off-screen */
-        transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-        }
-
-        .chapter-title.visible {
-        opacity: 1;
-        transform: translateY(0);
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-top: 200px;
+            margin-bottom: 30px;
+            color: white;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(30px); /* Start off-screen */
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
         }
 
         /* Chapter Content (Text) */
         .chapter-content {
-        color: white;
-        text-align: center;
-        font-size: 1.2em;
-        max-width: 700px;
-        margin: 0 auto 250px auto;
-        opacity: 0;
-        transform: translateY(30px); /* Start off-screen */
-        transition: opacity 1s ease 0.7s, transform 1s ease 0.7s; /* delay of 0.5s */
-        }
-
-        .chapter-content.visible {
-        opacity: 1;
-        transform: translateY(0);
-        }
-
-        /* When elements are revealed, they will slide in and fade into view */
-        .chapter-title.visible, .chapter-content.visible {
-        opacity: 1;
-        transform: translateY(0); /* Slide in */
+            color: white;
+            text-align: center;
+            font-size: 1.2em;
+            max-width: 700px;
+            margin: 0 auto 250px auto;
+            opacity: 0;
+            transform: translateY(30px); /* Start off-screen */
+            transition: opacity 1s ease 0.7s, transform 1s ease 0.7s; /* delay of 0.5s */
         }
         /* Toggle Button */
         .sidebar-toggle {
@@ -446,7 +426,7 @@
                 transform: translateY(-210px); /* Start above the screen */
             }
             100% {
-                transform: translateY(60vh); /* Move to the bottom of the screen */
+                transform: translateY(100vh); /* Move to the bottom of the screen */
             }
         }
 
@@ -609,7 +589,7 @@
 
       /* Basic styles for the letter */
       .letter {
-        padding: 100px 40px; /* Increased padding for more space inside the letter */
+        padding: 100px 50px; /* Increased padding for more space inside the letter */
         background-image: url('letter.png'); /* Set the PNG background */
         background-size: contain; /* Ensure the image is fully visible */
         background-repeat: no-repeat; /* Prevent img from repeating */
@@ -631,7 +611,7 @@
           align-items: center;
           text-align: center; /* Ensures text is centered */
       }
-      
+
 
      /* Styling for the text inside the letter */
       .letter p {
@@ -911,13 +891,29 @@
                   <div class="letter">
                       <p><strong>Dear Norman,</strong></p>
                       <p>There’s only so much I can say right now.<br> I know the past few years have been incredibly tough on you, but it’s time to move forward.<br> The answers will come in time. You’ll understand soon enough.<br>With love,<br> Dad.</p>
-                  </div>
-              </div>
-          </section>
+                           <!-- Button to Close the Letter -->
+                           <button id="closeLetterButton">Close Letter</button>
+                          </div>
+                      </div>
+                  </section>
+                
+          <!-- Nineth Panel Row with One Panel -->
+          <div class="panel-row row-1 hidden shock-effect">
+            <div class="shock-animation" id="shock_panel">
+                <img class="panel revealing-image" src="Panel_15.png" alt="Chapter 1 Panel 15">
+                <div class="shock-ripple"></div> <!-- ripple visual -->
+                <div class="shock-exclamations">
+                    <img src="exclamation-image.png" alt="Shock Exclamation" class="shock-img">
+                </div> <!-- Exclamation marks effect -->
+            </div>
+        </div>
 
-      </div>
-  </section>
-</div>
+        <p class="hidden">Norman’s eyes widen as he reads the letter, stunned by the revelation that his father is alive.</p>
+
+        </div>
+      </section>
+    </div>
+   
 
   <!-- CHAPTER 2 -->
   <div id="chapter2">
@@ -1190,7 +1186,7 @@
           const urlParams = new URLSearchParams(window.location.search);
           return urlParams.get(param);
         }
-    
+      
         const chapterId = getQueryParam('chapter');
         if (chapterId) {
           const target = document.getElementById(chapterId);
@@ -1200,25 +1196,23 @@
             }, 200);
           }
         }
-    
-        // --- Show all .hidden elements in chapter1 ---
-        const chapter1 = document.querySelector("#chapter1"); // Correcting selector
+      
+        // --- Show all .hidden in chapter1 ---
+        const chapter1 = document.querySelector("chapter1");
         if (chapter1) {
           const hiddenElements = chapter1.querySelectorAll(".hidden");
           hiddenElements.forEach(el => el.classList.remove("hidden"));
         }
-    
+      
         // --- Rain Animation on Panel 1 ---
         const panel1 = document.getElementById('panel_1');
         const rainOverlay = document.querySelector('.rain-overlay');
-    
+      
         function triggerRainEffect() {
           rainOverlay.classList.add('rain-animation');
         }
-    
-        // --- Scroll Event Handler ---
+      
         window.addEventListener('scroll', () => {
-          // Check if panel1 is in view for rain animation
           if (panel1) {
             const rect = panel1.getBoundingClientRect();
             const inView = rect.top < window.innerHeight && rect.bottom > 0;
@@ -1226,8 +1220,8 @@
               triggerRainEffect();
             }
           }
-    
-          // Scroll-to-top button visibility
+      
+          // Scroll-to-top button
           const scrollTopBtn = document.getElementById('scrollTopBtn');
           if (scrollTopBtn) {
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
@@ -1236,14 +1230,14 @@
               scrollTopBtn.style.display = 'none';
             }
           }
-    
+      
           // Section reveals on scroll
           revealSections();
         });
-    
-        // --- Reveal Sections on Scroll ---
+      
+        // --- Reveal Sections ---
         const sections = document.querySelectorAll('.chapter-section');
-    
+      
         function revealSections() {
           sections.forEach(section => {
             const rect = section.getBoundingClientRect();
@@ -1254,10 +1248,9 @@
             }
           });
         }
-    
-        // Call once to reveal sections already in view
+      
         revealSections();
-    
+      
         // --- Scroll to top button click ---
         const scrollTopBtn = document.getElementById('scrollTopBtn');
         if (scrollTopBtn) {
@@ -1266,7 +1259,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
           });
         }
-    
+      
         // --- Toggle Sidebar ---
         function toggleSidebar() {
           const sidebar = document.querySelector('.sidebar');
@@ -1274,14 +1267,14 @@
             sidebar.style.width = (sidebar.style.width === '0px' || sidebar.style.width === '') ? '200px' : '0';
           }
         }
-    
+      
         // --- Intersection Observer for Titles and Chapter Content ---
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               const target = entry.target;
               target.classList.add('visible');
-    
+      
               if (target.classList.contains('chapter-content')) {
                 const images = target.querySelectorAll('.revealing-image');
                 images.forEach((img, i) => {
@@ -1291,49 +1284,49 @@
             }
           });
         }, { threshold: 0.2 });
-    
+      
         document.querySelectorAll('.chapter-title, .chapter-content').forEach(el => {
           observer.observe(el);
         });
-    
+      
         // --- Thunder Shake for Panel 8 ---
         const panel8 = document.getElementById('panel-8');
         const thunderSound = document.getElementById('thunderSound');
         let hasPlayedThunder = false;
-    
+      
         window.addEventListener('scroll', () => {
           if (panel8 && thunderSound && !hasPlayedThunder) {
             const rect = panel8.getBoundingClientRect();
             const inView = rect.top < window.innerHeight && rect.bottom > 0;
-    
+      
             if (inView) {
               triggerThunderShake();
               hasPlayedThunder = true;
             }
           }
         });
-    
+      
         function triggerThunderShake() {
           let shakeCount = 0;
           const totalShakes = 3;
-    
+      
           if (panel8.classList.contains('thunder-effect')) return;
-    
+      
           const shakeInterval = setInterval(() => {
             panel8.classList.add('thunder-effect');
             thunderSound.play();
-    
+      
             setTimeout(() => {
               panel8.classList.remove('thunder-effect');
             }, 1500);
-    
+      
             shakeCount++;
             if (shakeCount >= totalShakes) {
               clearInterval(shakeInterval);
             }
           }, 1500);
         }
-    
+      
         // --- Shock Effect for Panel 15 ---
         const shockImg = document.getElementById('shock_panel');
         if (shockImg) {
@@ -1344,37 +1337,40 @@
               }
             });
           }, { threshold: 0.5 });
-    
+      
           shockObserver.observe(shockImg);
         }
-    
+      
         // --- Letter Button Interactions ---
-        const openLetterButton = document.getElementById('openLetterButton');
-        const closeLetterButton = document.getElementById('closeLetterButton');
-        const letterContainer = document.getElementById('letterContainer');
-    
-        if (openLetterButton && closeLetterButton && letterContainer) {
-          openLetterButton.addEventListener('click', () => {
-            letterContainer.classList.remove('is-hidden');
-          });
-    
-          closeLetterButton.addEventListener('click', () => {
-            letterContainer.classList.add('is-hidden');
-          });
-        }
-    
+      const closeLetterButton = document.getElementById('closeLetterButton');
+      const letterContainer = document.getElementById('letterContainer');
+
+      // Add event listener to the open button
+      openLetterButton.addEventListener('click', () => {
+        // Show the letter by removing the 'is-hidden' class
+        letterContainer.classList.remove('is-hidden');
+      });
+
+      // Add event listener to the close button
+      closeLetterButton.addEventListener('click', () => {
+        // Hide the letter by adding the 'is-hidden' class back
+        letterContainer.classList.add('is-hidden');
+      });
+
+  
+            
         // --- Compass Rotation ---
         const compass = document.getElementById('compass-img');
         const compassRotation = document.getElementById('compass-rotation');
         const compassValue = document.getElementById('compass-value');
-    
+      
         if (compass && compassRotation && compassValue) {
           compassRotation.addEventListener('input', () => {
             const degrees = compassRotation.value;
             compass.style.transform = `translate(-50%, -50%) rotate(${degrees}deg)`;
             compassValue.textContent = degrees;
           });
-    
+      
           compassRotation.addEventListener('input', () => {
             document.querySelectorAll('.flashback-panels').forEach(panel => {
               panel.classList.add('visible');
@@ -1382,8 +1378,44 @@
           });
         }
       });
-    </script>
-    
+
+      // Select all elements with class 'revealing-image', 'chapter-wrapper', 'chapter-title', and 'chapter-content'
+      const elements = document.querySelectorAll('.revealing-image, .chapter-wrapper, .chapter-title, .chapter-content');
+
+      // Intersection Observer setup
+      const observerOptions = {
+        root: null, // Viewport
+        threshold: 0.1, // Trigger when 10% of the element is visible
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Add the necessary styles to trigger the animations
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+            
+            // Optionally, stop observing the element after it becomes visible
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Observe each element
+      elements.forEach(element => {
+        observer.observe(element);
+      });
+
+      // Optional: You can also add a fallback for page load if you need the effect immediately
+      window.addEventListener('load', () => {
+        elements.forEach(element => {
+          element.style.opacity = 1;
+          element.style.transform = 'translateY(0)'; // Ensure elements are visible once page loads
+        });
+      });
+
+      </script>
+
 
 
 
