@@ -492,6 +492,46 @@
         animation: thunderShake 1.5s ease;
       }
 
+      /* Flickering animation for Panel 9 */
+            @keyframes flickerEffect {
+          0% {
+              opacity: 1;
+              box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Add a glow effect */
+          }
+          25% {
+              opacity: 0.5;
+              box-shadow: 0 0 20px rgba(255, 255, 255, 1); /* Glow stronger at this point */
+          }
+          50% {
+              opacity: 1;
+              box-shadow: 0 0 30px rgba(255, 255, 255, 0.8); /* Maximum glow */
+          }
+          75% {
+              opacity: 0.5;
+              box-shadow: 0 0 20px rgba(255, 255, 255, 1); /* Glow strong again */
+          }
+          100% {
+              opacity: 1;
+              box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Back to initial glow */
+          }
+      }
+
+      /* Apply the flicker effect to the panel */
+      .flicker {
+          animation: flickerEffect 0.5s infinite;  /* Faster animation duration */
+      }
+
+      /* Panel Row Styling */
+      .panel-row {
+          position: relative;
+      }
+
+      .panel {
+          width: 100%; /* Adjust as needed */
+          height: auto; /* Adjust as needed */
+      }
+
+
       /* Shock Animation for Panel 15 */
         .shock-animation {
         position: relative;
@@ -865,7 +905,7 @@
 
           <!-- Sixth Panel Row with One Panel -->
           <div class="panel-row row-2 hidden">
-              <img class="panel revealing-image" src="Panel_9.png" alt="Chapter 1 Panel 9">
+              <img id="panel_9" class="panel revealing-image" src="Panel_9.png" alt="Chapter 1 Panel 9">
               <img class="panel revealing-image" src="Panel_10.png" alt="Chapter 1 Panel 10">
           </div>
 
@@ -1338,40 +1378,75 @@
         // --- Thunder Shake for Panel 8 ---
         const panel8 = document.getElementById('panel-8');
         const thunderSound = document.getElementById('thunderSound');
-        let hasPlayedThunder = false;
-      
-        window.addEventListener('scroll', () => {
-          if (panel8 && thunderSound && !hasPlayedThunder) {
-            const rect = panel8.getBoundingClientRect();
-            const inView = rect.top < window.innerHeight && rect.bottom > 0;
-      
-            if (inView) {
-              triggerThunderShake();
-              hasPlayedThunder = true;
-            }
-          }
-        });
-      
-        function triggerThunderShake() {
-          let shakeCount = 0;
-          const totalShakes = 3;
-      
-          if (panel8.classList.contains('thunder-effect')) return;
-      
-          const shakeInterval = setInterval(() => {
-            panel8.classList.add('thunder-effect');
-            thunderSound.play();
-      
-            setTimeout(() => {
-              panel8.classList.remove('thunder-effect');
-            }, 1500);
-      
-            shakeCount++;
-            if (shakeCount >= totalShakes) {
-              clearInterval(shakeInterval);
-            }
-          }, 1500);
+        let hasPlayedThunder = false;  // Track if thunder has already played
+
+        // Function to check if the element is in the viewport
+        function isElementInView(el) {
+            const rect = el.getBoundingClientRect();
+            return rect.top < window.innerHeight && rect.bottom > 0;
         }
+
+        window.addEventListener('scroll', () => {
+            if (panel8 && thunderSound && !hasPlayedThunder) {
+                // If panel 8 is in view and thunder hasn't been played yet
+                if (isElementInView(panel8)) {
+                    triggerThunderShake();
+                    hasPlayedThunder = true;  // Make sure the thunder only plays once
+                }
+            }
+        });
+
+        // Function to trigger the thunder shake effect
+        function triggerThunderShake() {
+            let shakeCount = 0;
+            const totalShakes = 3;
+
+            if (panel8.classList.contains('thunder-effect')) return;  // Prevent additional shakes if already shaking
+
+            const shakeInterval = setInterval(() => {
+                panel8.classList.add('thunder-effect');  // Add the shake effect
+                thunderSound.play();  // Play the thunder sound
+
+                setTimeout(() => {
+                    panel8.classList.remove('thunder-effect');  // Remove the shake effect after the timeout
+                }, 500); // Shake duration, 500ms
+
+                shakeCount++;
+                if (shakeCount >= totalShakes) {
+                    clearInterval(shakeInterval);  // Stop shaking after the total shakes
+                }
+            }, 1000);  // Interval between each shake (1 second)
+        }
+
+    
+        // Flicker Animation for Panel 9
+        function revealPanelOnScroll() {
+            const panel = document.getElementById('panel_9'); // Target the specific panel by ID
+
+            if (isElementInView(panel)) {
+                const panelRow = panel.closest('.panel-row'); // Get the row containing the panel
+
+                // Make the panel visible
+                panelRow.classList.remove('hidden');
+
+                // Add the flicker effect
+                panel.classList.add('flicker');
+
+                // Optional: Remove the flicker class after a certain time if you want the flicker to stop
+                setTimeout(() => {
+                    panel.classList.remove('flicker');
+                }, 2000); // Stops flickering after 2 seconds (you can adjust the time)
+            }
+        }
+
+        // Listen for scroll events and check if the panel is in view
+        window.addEventListener('scroll', revealPanelOnScroll);
+
+        // Optional: Call once on load to check if the panel is already in view (for users who may have landed on the page with the panel already visible)
+        document.addEventListener('DOMContentLoaded', revealPanelOnScroll);
+
+
+  
       
         // --- Shock Effect for Panel 15 ---
         const shockImg = document.getElementById('shock_panel');
