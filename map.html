@@ -101,8 +101,8 @@
             transform: scale(1.1); /* Slightly enlarge the image on hover */
         }
 
-        /* Sidebar Styling */
-        .sidebar {
+     /* Sidebar Base Styling */
+     .sidebar {
             position: fixed;
             right: 0;
             top: 100px;
@@ -135,6 +135,25 @@
         .sidebar ul li a:hover {
             background-color: #555;
         }
+
+      /* Hide sidebar */
+      .is-hidden {
+        display: none;
+      }
+
+      /* Hamburger Icon Styling */
+      .hamburger-icon {
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        z-index: 1000;
+        cursor: pointer;
+      }
+
+      .hamburger-icon img {
+        width: 60px;
+        height: 60px;
+      }
 
         /* Map Content Styling */
         #map-content {
@@ -193,20 +212,6 @@
             transform: translate(-41px, -40px); /* Left and Up */
         }
 
-
-        /* Hamburger Icon */
-        .hamburger-icon {
-            position: fixed;
-            right: 20px;
-            top: 20px;
-            z-index: 1000;
-            cursor: pointer;
-        }
-
-        .hamburger-icon img {
-            width: 60px;
-            height: 60px;
-        }
 
         .scroll-container {
             width: 100%;
@@ -337,20 +342,8 @@
             transform: translateY(30px); /* Start off-screen */
             transition: opacity 1s ease 0.7s, transform 1s ease 0.7s; /* delay of 0.5s */
         }
-        /* Toggle Button */
-        .sidebar-toggle {
-            position: fixed;
-            right: 20px;
-            top: 20px;
-            z-index: 1000;
-            cursor: pointer;
-        }
 
-        .sidebar-toggle img {
-            width: 60px;
-            height: 60px;
-        }
-
+    
         /* Fullscreen & Auto Scroll Buttons - Circle Style */
         .fullscreen-btn,
         .auto-btn {
@@ -738,20 +731,21 @@
     </a>
 
      <!-- Hamburger Icon to Toggle Sidebar -->
-     <div class="hamburger-icon" onclick="toggleSidebar()">
+     <div id="hamburgerIcon" class="hamburger-icon">
         <img src="hamburger-icon.png" alt="Hamburger Icon">
     </div>
 
+   
 
     <!-- Sidebar with Chapter Links (on the far right) -->
-    <div class="sidebar">
+    <div id="sidebar" class="sidebar is-hidden">
         <ul>
-            <li><a href="#chapter1">Ch. 1</a><li>
-            <li><a href="#chapter2">Ch. 2</a><li>
-            <li><a href="#chapter3">Ch. 3</a><li>
-            <li><a href="#chapter4">Ch. 4</a><li>
-            <li><a href="#chapter5">Ch. 5</a><li>
-            <li><a href="#chapter6">Epilogue</a><li>
+            <li><a href="#chapter1">Ch. 1</a></li>
+            <li><a href="#chapter2">Ch. 2</a></li>
+            <li><a href="#chapter3">Ch. 3</a></li>
+            <li><a href="#chapter4">Ch. 4</a></li>
+            <li><a href="#chapter5">Ch. 5</a></li>
+            <li><a href="#chapter6">Epilogue</a></li>
         </ul>
     </div>
 
@@ -1234,22 +1228,7 @@
           // Section reveals on scroll
           revealSections();
         });
-      
-        // --- Reveal Sections ---
-        const sections = document.querySelectorAll('.chapter-section');
-      
-        function revealSections() {
-          sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-              section.classList.add('visible');
-              const image = section.querySelector('.revealing-image');
-              if (image) image.classList.add('visible');
-            }
-          });
-        }
-      
-        revealSections();
+ 
       
         // --- Scroll to top button click ---
         const scrollTopBtn = document.getElementById('scrollTopBtn');
@@ -1260,14 +1239,27 @@
           });
         }
       
-        // --- Toggle Sidebar ---
+        // --- Sidebar Open Close ---
         function toggleSidebar() {
-          const sidebar = document.querySelector('.sidebar');
-          if (sidebar) {
-            sidebar.style.width = (sidebar.style.width === '0px' || sidebar.style.width === '') ? '200px' : '0';
-          }
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('is-hidden');
+      }
+
+      const sidebar = document.getElementById('sidebar');
+      const hamburgerIcon = document.getElementById('hamburgerIcon');
+
+      // Track if sidebar is open or not
+      let isSidebarOpen = false;
+
+      hamburgerIcon.addEventListener('click', () => {
+        if (isSidebarOpen) {
+          sidebar.classList.add('is-hidden'); // Close it
+        } else {
+          sidebar.classList.remove('is-hidden'); // Open it
         }
-      
+        isSidebarOpen = !isSidebarOpen; // Flip the state
+      });
+                  
         // --- Intersection Observer for Titles and Chapter Content ---
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
