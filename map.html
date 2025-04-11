@@ -471,6 +471,39 @@
             animation-duration: 0.45s;
             animation-delay: 1.2s;
         }
+
+        /* Cloud Animation for Panel 3 */
+        #clouded-mind {
+            position: absolute;
+            top: 14%;      /* Adjust this based on Norman's head */
+            left: 70%;
+            transform: translateX(-50%);
+            width: 600px;  /* Size of the cloud */
+            opacity: 0;    /* Start with opacity 0 */
+            animation: cloudFade 3s ease-in-out forwards; /* Cloud fade-in animation */
+            z-index: 3;    /* Ensure it appears above the panel image */
+            pointer-events: none; /* Prevent cloud from interfering with clicks */
+        }
+
+        /* Cloud fade-in animation */
+        @keyframes cloudFade {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) scale(0.95);
+                filter: blur(2px);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateX(-50%) scale(1.05);
+                filter: blur(1px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+                filter: blur(0);
+            }
+        }
+
       
        
        /* Thunder Animate for Panel 8 */
@@ -843,7 +876,8 @@
           <!-- Second Panel Row with Two Panels -->
           <div class="panel-row row-2 hidden">
               <img class="panel revealing-image" src="Panel_2.png" alt="Chapter 1 Panel 2">
-              <img class="panel revealing-image" src="Panel_3.png" alt="Chapter 1 Panel 3">
+              <img id="panel_3" class="panel revealing-image" src="Panel_3.png" alt="Chapter 1 Panel 3">
+              <img id="clouded-mind" src="cloud-overlay.png" alt="Clouded mind">
           </div>
 
           <p class="hidden"><br>"I stare at the blank screen, trying to make sense of it all. But nothing comes to mind."</p>
@@ -905,7 +939,7 @@
 
           <!-- Sixth Panel Row with One Panel -->
           <div class="panel-row row-2 hidden">
-              <img id="panel_9" class="panel revealing-image" src="Panel_9.png" alt="Chapter 1 Panel 9">
+              <img class="panel revealing-image" src="Panel_9.png" alt="Chapter 1 Panel 9">
               <img id="panel_10" class="panel revealing-image" src="Panel_10.png" alt="Chapter 1 Panel 10">
               <div class="flame">
                 <img src="flame-image.png" alt="Flame"> 
@@ -1377,6 +1411,23 @@
         document.querySelectorAll('.chapter-title, .chapter-content').forEach(el => {
           observer.observe(el);
         });
+
+        // Cloud Animation for Panel 3
+
+        const panel3 = document.getElementById('panel-3');
+        const cloudedMind = document.getElementById('clouded-mind');
+        let cloudedShown = false;
+
+        window.addEventListener('scroll', () => {
+            const rect = panel3.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+            // Trigger cloud fade-in when panel is in view
+            if (inView && !cloudedShown) {
+                cloudedMind.style.opacity = '1';  // Make cloud visible
+                cloudedShown = true;
+            }
+        });
       
         // --- Thunder Shake for Panel 8 ---
         const panel8 = document.getElementById('panel-8');
@@ -1431,33 +1482,6 @@
                 rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth)
             );
         }
-
-        // Flicker Animation for Panel 9
-        function revealPanelOnScroll() {
-            const panel = document.getElementById('panel_9'); // Target the specific panel by ID
-
-            if (isElementInView(panel)) {
-                const panelRow = panel.closest('.panel-row'); // Get the row containing the panel
-
-                // Make the panel visible
-                panelRow.classList.remove('hidden');
-
-                // Add the flicker effect
-                panel.classList.add('flicker');
-
-                // Optional: Remove the flicker class after a certain time if you want the flicker to stop
-                setTimeout(() => {
-                    panel.classList.remove('flicker');
-                }, 2000); // Stops flickering after 2 seconds (you can adjust the time)
-            }
-        }
-
-        // Listen for scroll events and check if the panel is in view
-        window.addEventListener('scroll', revealPanelOnScroll);
-
-        // Optional: Call once on load to check if the panel is already in view (for users who may have landed on the page with the panel already visible)
-        document.addEventListener('DOMContentLoaded', revealPanelOnScroll);
-        
 
         // Flame Flicker Animation for Panel 10
         const panel10 = document.getElementById('panel-10');
