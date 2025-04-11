@@ -477,25 +477,41 @@
             position: absolute;
             top: 14%;      /* Adjust this based on Norman's head */
             left: 70%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) scale(0.9); /* Start smaller */
             width: 600px;  /* Size of the cloud */
-            opacity: 0;    /* Start with opacity 0 */
+            opacity: 1;    /* Start with opacity 0 */
             animation: cloudFade 3s ease-in-out forwards; /* Cloud fade-in animation */
             z-index: 3;    /* Ensure it appears above the panel image */
             pointer-events: none; /* Prevent cloud from interfering with clicks */
+            animation: cloudFadeDouble 6s ease-in-out forwards;
         }
 
-        /* Cloud fade-in animation */
-        @keyframes cloudFade {
+       /* Cloud double fade-in with pause */
+        @keyframes cloudFadeDouble {
             0% {
                 opacity: 0;
-                transform: translateX(-50%) scale(0.95);
+                transform: translateX(-50%) scale(0.9);
                 filter: blur(2px);
             }
-            50% {
-                opacity: 0.8;
+            15% {
+                opacity: 1;
                 transform: translateX(-50%) scale(1.05);
-                filter: blur(1px);
+                filter: blur(0.5px);
+            }
+            30% {
+                opacity: 0;
+                transform: translateX(-50%) scale(0.95);
+                filter: blur(1.5px);
+            }
+            50% {
+                opacity: 0;
+                transform: translateX(-50%) scale(0.95);
+                filter: blur(1.5px);
+            }
+            65% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.05);
+                filter: blur(0.5px);
             }
             100% {
                 opacity: 1;
@@ -504,8 +520,7 @@
             }
         }
 
-      
-       
+               
        /* Thunder Animate for Panel 8 */
        @keyframes thunderShake {
         0%, 100% { transform: translate(0, 0); }
@@ -1413,7 +1428,6 @@
         });
 
         // Cloud Animation for Panel 3
-
         const panel3 = document.getElementById('panel-3');
         const cloudedMind = document.getElementById('clouded-mind');
         let cloudedShown = false;
@@ -1422,9 +1436,8 @@
             const rect = panel3.getBoundingClientRect();
             const inView = rect.top < window.innerHeight && rect.bottom > 0;
 
-            // Trigger cloud fade-in when panel is in view
             if (inView && !cloudedShown) {
-                cloudedMind.style.opacity = '1';  // Make cloud visible
+                cloudedMind.style.animation = 'cloudFadeDouble 6s ease-in-out forwards';
                 cloudedShown = true;
             }
         });
