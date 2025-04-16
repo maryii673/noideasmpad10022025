@@ -760,7 +760,7 @@
       /* Styling for the clock-wrapper */
 
         .challenge-heading {
-        font-size: 2rem;
+        font-size: 2em;
         color: #4d9ed8;
         margin-bottom: 10px;
         text-transform: uppercase;
@@ -806,6 +806,180 @@
         color: #ccc;
         text-align: center;
       }
+
+      /* Style for the "Memory" Puzzle */
+      #puzzle-container {
+        text-align: center;
+        font-family: 'Georgia', serif;
+        color: #4d9ed8;
+        background-color: #0b0b0c;
+        padding: 2em;
+        transition: height 0.5s ease;
+        overflow: hidden;
+
+      }
+
+      #puzzle-container h2 {
+      font-size: 2em;
+      margin-bottom: 0.5em;
+    }
+
+      .headline {
+        color: #fff;
+        font-size: 1.2em;
+      }
+
+      #puzzle-instructions {
+        font-style: italic;
+        color: #ccc;
+        font-size: 1em;
+        margin-bottom: 1em;
+      }
+
+      .memory-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1em;
+        margin: 1em 0;
+      }
+
+      .tile {
+        width: 80px;
+        height: 80px;
+        font-size: 2em;
+        background-color: #1e1e1e;
+        color: #fff;
+        border: 2px solid #777;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: grab;
+        transition: all 0.3s ease;
+        user-select: none;
+      }
+
+      .puzzle-buttons {
+        margin-top: 1em;
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+      }
+
+      .puzzle-buttons button {
+        background-color: #3498db;
+        color: #eee;
+        border: none;
+        padding: 0.5em 1em;
+        font-size: 1em;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .puzzle-buttons button:hover {
+        background-color: #2980b9;
+      }
+
+      .memory-narration {
+      color: #eee;
+      text-align: center;
+      font-style: italic;
+      margin-top: 1em;
+      font-size: 1.1em;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+
+    .memory-narration.revealed {
+      opacity: 1;
+    }
+
+    #memory-panels {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5em;
+      margin: 2em auto;
+      max-width: 900px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    #memory-panels.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .memory-panel {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      border-left: 4px solid #4d9ed8;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .memory-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .memory-panel:hover::after {
+      content: attr(data-text);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.8em;
+      background: rgba(0, 0, 0, 0.7);
+      font-size: 0.9em;
+      color: #ccc;
+      font-style: italic;
+    }
+
+    .memory-panel-hidden {
+      display: none;
+    }
+
+    #memory-intro {
+      opacity: 0;
+      transition: opacity 1s ease;
+      height: 0;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    #memory-intro.revealed {
+      opacity: 1;
+      height: auto;
+      margin-top: 1em;
+    }
+
+    #memory-panels {
+      display: none; /* start fully hidden */
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    #memory-panels.revealed {
+      display: grid; /* reveal with grid */
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #puzzle-container {
+      transition: all 0.5s ease; /* optional for smoother resizing */
+    }
+
+
+   
 
         footer {
         background-color: #1a1a1a;;
@@ -1030,8 +1204,55 @@
     <h2 class="chapter-title hidden">CHAPTER 2: The Map</h2>
     <section class="chapter-section">
     <section class="chapter-content">
-        <p class="hidden">This chapter introduces the main characters...</p>
 
+
+         <!-- Interactivity trigger -->
+         <section id="puzzle-container">
+          <h2>CHALLENGE #2</h2>
+          <label for="puzzle-instructions" class="puzzle-label headline">
+            Help Norman Piece Together His Memories !
+          </label>
+          <p id="puzzle-instructions">Rearrange the letters to spell 'MEMORY' in the correct order.<br> Then reveal the memory.</p>
+        
+          <!-- Tile Grid -->
+          <div class="memory-grid" id="tile-grid">
+            <!-- Tiles will be generated dynamically -->
+          </div>
+        
+          <!-- Buttons -->
+          <div class="puzzle-buttons">
+            <button id="shuffle-btn">🔀 Shuffle</button>
+            <button id="reveal-btn">✨ Reveal Memory</button>
+          </div>
+        
+          <!-- Memory Panels (Hidden Until Revealed) -->
+          <p id="memory-intro" class="memory-narration">
+            <em>The letters shift… and so do the pieces of Norman’s past.</em>
+          </p>
+          
+          <div id="memory-panels" class="memory-panels-hidden">
+            <div class="memory-panel" data-text="1. Norman's first forgotten feeling resurfaces...">
+              <img src="panel_1.png" alt="Memory Panel 1">
+            </div>
+            <div class="memory-panel" data-text="2. A crack of light filters through the dusty attic...">
+              <img src="panel_2.png" alt="Memory Panel 2">
+            </div>
+            <div class="memory-panel" data-text="3. Echoes of laughter bounce from old hallways...">
+              <img src="panel_3.png" alt="Memory Panel 3">
+            </div>
+            <div class="memory-panel" data-text="4. A photograph — faded, torn — clutched in his hand...">
+              <img src="panel_4.png" alt="Memory Panel 4">
+            </div>
+            <div class="memory-panel" data-text="5. The scent of coffee, strong and nostalgic...">
+              <img src="panel_5.png" alt="Memory Panel 5">
+            </div>
+            <div class="memory-panel" data-text="6. A voice calls his name... his own voice, younger.">
+              <img src="panel_6.png" alt="Memory Panel 6">
+            </div>
+          </div>
+        </section>
+        
+     
         <!-- First Panel Row with Two Panels -->
         <div class="panel-row row-2 hidden">
           <img class="panel revealing-image" src="cover_page.png" alt="Chapter 2 Panel 1">
@@ -1603,7 +1824,122 @@
         });
       });
 
-      </script>
+
+      // Challenge #2 - Memory Panel 
+      const tileGrid = document.getElementById("tile-grid");
+  const memoryPanels = document.getElementById("memory-panels");
+  const shuffleBtn = document.getElementById("shuffle-btn");
+  const revealBtn = document.getElementById("reveal-btn");
+
+  const correctWord = ['M', 'E', 'M', 'O', 'R', 'Y'];
+  let currentTiles = [];
+
+  // Initialize tiles
+  function initTiles(shuffle = true) {
+    tileGrid.innerHTML = "";
+    currentTiles = [...correctWord];
+
+    if (shuffle) {
+      for (let i = currentTiles.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [currentTiles[i], currentTiles[j]] = [currentTiles[j], currentTiles[i]];
+      }
+    }
+
+    currentTiles.forEach(letter => {
+      const tile = document.createElement("div");
+      tile.className = "tile";
+      tile.draggable = true;
+      tile.textContent = letter;
+      tileGrid.appendChild(tile);
+    });
+
+    // Make tiles draggable & reorderable
+    addDragAndDrop();
+  }
+
+  // Drag and Drop Logic
+  function addDragAndDrop() {
+    const tiles = document.querySelectorAll(".tile");
+    let dragged = null;
+
+    tiles.forEach(tile => {
+      tile.addEventListener("dragstart", function () {
+        dragged = tile;
+        tile.style.opacity = 0.5;
+      });
+
+      tile.addEventListener("dragend", function () {
+        dragged = null;
+        tile.style.opacity = 1;
+      });
+
+      tile.addEventListener("dragover", function (e) {
+        e.preventDefault();
+      });
+
+      tile.addEventListener("drop", function () {
+        if (dragged !== this) {
+          // Swap text content
+          const temp = this.textContent;
+          this.textContent = dragged.textContent;
+          dragged.textContent = temp;
+        }
+      });
+    });
+  }
+
+  // Check the order and reveal memory if correct
+  revealBtn.addEventListener("click", function () {
+    const current = Array.from(document.querySelectorAll(".tile")).map(t => t.textContent);
+    if (JSON.stringify(current) === JSON.stringify(correctWord)) {
+      memoryPanels.style.display = "grid";
+    } else {
+      alert("The word is not correct. Try again!");
+    }
+  });
+
+  shuffleBtn.addEventListener("click", function () {
+    memoryPanels.style.display = "none";
+    initTiles(true);
+  });
+
+  // On load
+  initTiles(true);
+
+  // Part 2 to Challenge #2
+
+  revealBtn.addEventListener("click", function () {
+  const current = Array.from(document.querySelectorAll(".tile")).map(t => t.textContent);
+  const intro = document.getElementById("memory-intro");
+  const panels = document.getElementById("memory-panels");
+
+  if (JSON.stringify(current) === JSON.stringify(correctWord)) {
+    // Step 1: Fade in the quote
+    intro.classList.add("revealed");
+
+    // Step 2: After 2s (quote fade-in duration), reveal the panels
+    setTimeout(() => {
+      panels.classList.add("revealed");
+    }, 2000); // match the transition time from CSS
+  } else {
+    alert("The word is not correct. Try again!");
+  }
+});
+
+shuffleBtn.addEventListener("click", function () {
+  const intro = document.getElementById("memory-intro");
+  const panels = document.getElementById("memory-panels");
+
+  // Hide the quote and panels again
+  intro.classList.remove("revealed");
+  panels.classList.remove("revealed");
+
+  // Shuffle tiles
+  initTiles(true);
+});
+      
+  </script>
 
 
 
@@ -1625,7 +1961,7 @@
 
 
   
-    // To Make sure page loads all content the first time
+    
 
     
     
