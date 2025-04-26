@@ -1692,6 +1692,23 @@
             }, 200);
           }
         }
+
+        // fix gallery problems ----
+        window.onload = function() {
+        // Parse the URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const chapterId = urlParams.get('chapter'); // like "chapter2"
+
+        if (chapterId) {
+          // Try to find the element with that ID
+          const chapterElement = document.getElementById(chapterId);
+          if (chapterElement) {
+            // Scroll smoothly to it
+            chapterElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      };
+
       
         // --- Show all .hidden in chapter1 ---
         const chapter1 = document.querySelector("chapter1");
